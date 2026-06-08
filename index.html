@@ -14,35 +14,58 @@
   .container { max-width: 640px; margin: 0 auto; }
   h1 { font-size: 26px; color: #5a2d0c; text-align: center; margin-bottom: 4px; }
   .subtitle { text-align: center; color: #888; font-size: 14px; margin-bottom: 24px; }
-  
+
+  /* 狀態標示條 */
+  .legend {
+    display: flex; gap: 6px; justify-content: center; margin-bottom: 18px; flex-wrap: wrap;
+  }
+  .legend-item {
+    font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: 500;
+  }
+  .legend-old   { background: #e8f5e9; color: #2e7d32; }
+  .legend-up    { background: #fff3e0; color: #e65100; }
+  .legend-new   { background: #f3e5f5; color: #7b1fa2; }
+  .legend-ref   { background: #e3f2fd; color: #1565c0; }
+
   .section-label {
     font-size: 13px; font-weight: 600; color: #8b4513;
     margin: 20px 0 8px 4px; letter-spacing: 1px;
   }
-  
+
   .card {
     background: #fff; border-radius: 12px; padding: 16px 20px;
     margin-bottom: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     display: block; text-decoration: none; color: inherit;
     border-left: 5px solid #8b4513;
     transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
   }
   .card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-  
-  .card .title { font-weight: 600; font-size: 15px; }
+
+  .card .title { font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .card .desc { font-size: 13px; color: #777; margin-top: 2px; line-height: 1.5; }
+
+  /* 狀態標籤 */
+  .badge {
+    display: inline-block; font-size: 10px; padding: 1px 8px; border-radius: 10px;
+    font-weight: 600; letter-spacing: 0.3px; white-space: nowrap;
+  }
+  .badge-old   { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+  .badge-up    { background: #fff3e0; color: #e65100; border: 1px solid #ffcc80; }
+  .badge-new   { background: #f3e5f5; color: #7b1fa2; border: 1px solid #ce93d8; }
+  .badge-ref   { background: #e3f2fd; color: #1565c0; border: 1px solid #90caf9; }
+
   .card .tag {
     display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 8px;
     margin-top: 6px; font-weight: 500;
   }
-  
+
   .tag-study   { background: #fef3e2; color: #e65100; }
   .tag-test    { background: #fce4ec; color: #c62828; }
   .tag-skill   { background: #e8f5e9; color: #2e7d32; }
-  .tag-guide   { background: #e3f2fd; color: #1565c0; }
-  .tag-geo     { background: #f3e5f5; color: #7b1fa2; }
   .tag-overview { background: #fff8e1; color: #f57f17; }
-  
+  .tag-geo     { background: #f3e5f5; color: #7b1fa2; }
+
   .card.day1 { border-color: #8b4513; }
   .card.day2 { border-color: #2e7d32; }
   .card.day3 { border-color: #1565c0; }
@@ -50,7 +73,7 @@
   .card.skill { border-color: #2e7d32; }
   .card.overview { border-color: #f57f17; }
   .card.geo { border-color: #7b1fa2; }
-  
+
   .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #bbb; }
   .footer a { color: #8b4513; text-decoration: none; }
 </style>
@@ -61,93 +84,163 @@
   <h1>📖 中二中國歷史</h1>
   <p class="subtitle">考試溫習 · 綜合門戶</p>
 
+  <!-- 圖例 -->
+  <div class="legend">
+    <span class="legend-item legend-old">🟢 原有</span>
+    <span class="legend-item legend-up">🟠 升級</span>
+    <span class="legend-item legend-new">🟣 新增</span>
+    <span class="legend-item legend-ref">🔵 參考</span>
+  </div>
+
   <!-- 總覽 -->
   <div class="section-label">📋 地圖與策略</div>
+
   <a href="認知深度索引圖.md" class="card overview">
-    <div class="title">🧭 認知深度索引圖</div>
-    <div class="desc">十個主題的 recall→evaluate 層次覆蓋檢查表 + 複習策略建議</div>
+    <div class="title">
+      🧭 認知深度索引圖
+      <span class="badge badge-new">🆕 新增</span>
+    </div>
+    <div class="desc">十大主題的 recall→evaluate 層次覆蓋檢查表 + 複習策略建議<br>▸ 先看這份！知道弱點在哪再開始複習</div>
     <span class="tag tag-overview">導航</span>
   </a>
+
   <a href="三天溫習計劃.md" class="card overview">
-    <div class="title">📅 三天溫習計劃</div>
+    <div class="title">
+      📅 三天溫習計劃
+      <span class="badge badge-old">🟢 原有</span>
+    </div>
     <div class="desc">三日時間分配、每節 30 分鐘、學習內容 + 記憶要點</div>
     <span class="tag tag-overview">計劃</span>
   </a>
+
   <a href="考試範圍_集中溫習.md" class="card overview">
-    <div class="title">📚 考試範圍 · 集中溫習</div>
+    <div class="title">
+      📚 考試範圍 · 集中溫習
+      <span class="badge badge-old">🟢 原有</span>
+    </div>
     <div class="desc">完整教材整理，覆蓋明代（鄭和+北京城）+ 清代全單元</div>
     <span class="tag tag-overview">教材</span>
   </a>
 
   <!-- 三天互動學習 -->
   <div class="section-label">📅 三天互動學習</div>
+
   <a href="day1.html" class="card day1">
-    <div class="title">📅 第1天 — 明代 + 清朝開端</div>
+    <div class="title">
+      📅 第1天 — 明代 + 清朝開端
+      <span class="badge badge-old">🟢 原有</span>
+    </div>
     <div class="desc">鄭和七下西洋 · 北京城 · 滿清入關 · 康雍乾盛世</div>
     <span class="tag tag-study">互動</span>
   </a>
+
   <a href="day2.html" class="card day2">
-    <div class="title">📅 第2天 — 清初中衰到列強入侵</div>
+    <div class="title">
+      📅 第2天 — 清初中衰到列強入侵
+      <span class="badge badge-old">🟢 原有</span>
+    </div>
     <div class="desc">民族政策 · 中衰 · 西力東漸 · 鴉片戰爭 · 太平天國 · 甲午+八國</div>
     <span class="tag tag-study">互動</span>
   </a>
+
   <a href="day3.html" class="card day3">
-    <div class="title">📅 第3天 — 晚清改革 + 總複習</div>
+    <div class="title">
+      📅 第3天 — 晚清改革 + 總複習
+      <span class="badge badge-old">🟢 原有</span>
+    </div>
     <div class="desc">洋務運動 · 戊戌維新 · 清末新政 · 詹天佑 · 一站到底總複習</div>
     <span class="tag tag-study">互動</span>
   </a>
-  <a href="互動溫習工作紙.md" class="card study">
-    <div class="title">📝 互動溫習工作紙（完整版）</div>
+
+  <a href="互動溫習工作紙.md" class="card overview">
+    <div class="title">
+      📝 互動溫習工作紙（完整版）
+      <span class="badge badge-old">🟢 原有</span>
+    </div>
     <div class="desc">18 節分段學習 + 雙語對照 + 速記口訣 + 快速自檢</div>
     <span class="tag tag-study">工作紙</span>
   </a>
 
   <!-- 模擬測試 -->
   <div class="section-label">🎯 模擬測試</div>
+
   <a href="模擬試卷.html" class="card mock">
-    <div class="title">📄 模擬試卷（深度版）</div>
-    <div class="desc">6 大題型 · 100 分 · 含真實史料分析題 · 要求引用證據</div>
+    <div class="title">
+      📄 模擬試卷（深度版）
+      <span class="badge badge-up">🟠 升級</span>
+    </div>
+    <div class="desc">
+      <strong>改造重點</strong>：舊版資料題 → 加入真實史料（馬歡《瀛涯勝覽》、嚴從簡《殊域周咨錄》）<br>
+      ▸ 一手/二手史料辨識 · S-T-A-R 分析 · 數據趨勢 · 比較+評價題
+    </div>
     <span class="tag tag-test">試卷</span>
   </a>
+
   <a href="模擬試卷_答案.html" class="card mock">
-    <div class="title">✅ 模擬試卷 · 參考答案</div>
-    <div class="desc">評分標準 + 答題框架提示（史料分析/對比/評價方法引用）</div>
+    <div class="title">
+      ✅ 模擬試卷 · 參考答案
+      <span class="badge badge-up">🟠 升級</span>
+    </div>
+    <div class="desc">
+      <strong>改造重點</strong>：新增每題評分標準 + 答題框架提示（史料分析/對比/評價方法引用）<br>
+      ▸ 附 method-note 告訴你用哪個技能框架來答
+    </div>
     <span class="tag tag-test">答案</span>
   </a>
 
-  <!-- 技能框架 -->
-  <div class="section-label">🧠 答題方法框架</div>
+  <!-- 技能框架（全新增） -->
+  <div class="section-label">🧠 答題方法框架 <span class="badge badge-new" style="font-size:11px;padding:2px 10px;">🆕 全部新增</span></div>
+
   <a href="技能框架_史料分析.html" class="card skill">
-    <div class="title">🔍 史料分析框架</div>
-    <div class="desc">S-T-A-R 四問法 · 一手/二手史料辨識 · 實戰練習</div>
+    <div class="title">
+      🔍 史料分析框架
+      <span class="badge badge-new">🆕 新增</span>
+    </div>
+    <div class="desc">S-T-A-R 四問法 · 一手/二手史料辨識 · 實戰練習（附中二歷史案例）</div>
     <span class="tag tag-skill">方法</span>
   </a>
+
   <a href="技能框架_因果鏈分析.html" class="card skill">
-    <div class="title">🔗 因果鏈分析模板</div>
-    <div class="desc">三步法 · 三大必記因果鏈 · 遠因/近因/直接/間接影響分類</div>
+    <div class="title">
+      🔗 因果鏈分析模板
+      <span class="badge badge-new">🆕 新增</span>
+    </div>
+    <div class="desc">三步法 · 三大必記因果鏈（由盛轉衰/鴉片戰爭/清朝滅亡）</div>
     <span class="tag tag-skill">方法</span>
   </a>
+
   <a href="技能框架_對比分析.html" class="card skill">
-    <div class="title">📊 對比分析框架</div>
-    <div class="desc">三步法 · 五大必考對比表 · 從「找不同」升級到「多維度對齊」</div>
+    <div class="title">
+      📊 對比分析框架
+      <span class="badge badge-new">🆕 新增</span>
+    </div>
+    <div class="desc">三步法 · 五大必考對比表（鄭和vs哥倫布/三場改革/條約對比…）</div>
     <span class="tag tag-skill">方法</span>
   </a>
+
   <a href="技能框架_評價分析.html" class="card skill">
-    <div class="title">⚖️ 評價分析框架</div>
-    <div class="desc">P-E-B-C 四步法 · 同意/不同意/部分同意模板 · 答題範例</div>
+    <div class="title">
+      ⚖️ 評價分析框架
+      <span class="badge badge-new">🆕 新增</span>
+    </div>
+    <div class="desc">P-E-B-C 四步法 · 同意/不同意/部分同意模板 · 高分段答案示範</div>
     <span class="tag tag-skill">方法</span>
   </a>
 
   <!-- 地理經驗參考 -->
   <div class="section-label">📎 參考</div>
+
   <a href="from_geo/agent_handoff_history_methodology.md" class="card geo">
-    <div class="title">🌍 地理科經驗遷移</div>
-    <div class="desc">地理 agent 的復盤：深度/廣度/難度三維缺口分析，直接應用到歷史科</div>
+    <div class="title">
+      🌍 地理科經驗遷移
+      <span class="badge badge-ref">🔵 參考</span>
+    </div>
+    <div class="desc">地理 agent 的復盤：深度/廣度/難度三維缺口分析 → 直接應用到歷史科<br>▸ 這次所有改造的靈感來源</div>
     <span class="tag tag-geo">參考</span>
   </a>
 
   <div class="footer">
-    🏫 現代初中中國歷史（中二）考試溫習 &nbsp;·&nbsp; 
+    🏫 現代初中中國歷史（中二）考試溫習 &nbsp;·&nbsp;
     <a href="https://github.com/gzxmren/4ai" target="_blank">GitHub</a>
   </div>
 
