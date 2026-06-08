@@ -1,0 +1,12 @@
+# PDF 大文件（不納入版本控制）
+*.pdf
+
+# 系統文件
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# 本地臨時文件
+*.log
+*.tmp

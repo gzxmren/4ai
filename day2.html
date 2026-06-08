@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中二中國歷史 · 第2天 · 清朝第1章後半 + 第2章全</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: #f5f0eb;
+    color: #2c2c2c;
+    line-height: 1.8;
+    font-size: 16px;
+    padding: 16px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  
+  /* Day header */
+  .day-header {
+    background: linear-gradient(135deg, #2e7d32, #2e7d32dd);
+    color: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+    position: relative;
+  }
+  .day-header h1 { font-size: 22px; margin: 0; }
+  .day-header .subtitle { font-size: 14px; opacity: 0.9; margin-top: 6px; }
+  
+  /* Progress bar */
+  .progress-bar {
+    background: #e0d5c8;
+    border-radius: 20px;
+    height: 10px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2e7d32, #2e7d32aa);
+    border-radius: 20px;
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+  .progress-text {
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  /* Segment card */
+  .segment {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border-left: 4px solid #2e7d32;
+  }
+  .segment-header {
+    padding: 14px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .segment-header:hover { background: #faf5ef; }
+  .seg-num {
+    background: #2e7d32;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .seg-title { flex: 1; font-weight: 600; color: #333; font-size: 15px; }
+  .seg-toggle { color: #999; font-size: 14px; transition: transform 0.3s; }
+  .segment.open .seg-toggle { transform: rotate(90deg); }
+  
+  .segment-body {
+    padding: 0 20px 20px;
+    border-top: 1px solid #f0e8dc;
+  }
+  .segment-body h4 {
+    color: #2e7d32;
+    margin: 16px 0 8px;
+    font-size: 16px;
+  }
+  .segment-body p { margin: 8px 0; }
+  .segment-body blockquote {
+    margin: 10px 0;
+    padding: 10px 14px;
+    background: #faf5ef;
+    border-left: 4px solid #2e7d3266;
+    border-radius: 4px;
+    color: #555;
+    font-size: 14px;
+  }
+  .segment-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .segment-body td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  .segment-body tr:nth-child(even) td { background: #faf5ef; }
+  hr { border: none; border-top: 1px solid #e0d5c8; margin: 14px 0; }
+  
+  /* Quiz */
+  .quiz-section {
+    margin-top: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #e8f5e9;
+  }
+  .quiz-header {
+    background: #e8f5e9;
+    padding: 10px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2e7d32;
+    user-select: none;
+  }
+  .quiz-header:hover { background: #c8e6c9; }
+  .quiz-icon { font-size: 18px; }
+  .toggle-arrow { margin-left: auto; transition: transform 0.3s; }
+  .quiz-answers {
+    padding: 12px 16px;
+    background: #f1f8e9;
+  }
+  .q-text {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Done checkbox */
+  .seg-done {
+    margin-top: 12px;
+    padding: 8px 0;
+    border-top: 1px dashed #e0d5c8;
+    font-size: 14px;
+  }
+  .seg-done label { cursor: pointer; color: #666; }
+  .seg-done input { margin-right: 6px; }
+  
+  /* Day nav */
+  .day-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .day-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .day-nav a.active {
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .day-nav a:not(.active) {
+    background: #e0d5c8;
+    color: #666;
+  }
+  .day-nav a:not(.active):hover { background: #d4c5b0; }
+  
+  /* Responsive */
+  @media (max-width: 500px) {
+    .segment-header { padding: 12px 14px; }
+    .seg-title { font-size: 14px; }
+    .day-nav a { font-size: 12px; padding: 8px 6px; }
+  }
+  
+  /* Reset all button */
+  .reset-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 8px 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    color: #999;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover {
+    border-color: #2e7d32;
+    color: #2e7d32;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="day-nav">
+  <a href="day1.html" class="active" style="background:#2e7d32;color:#fff">📅 第1天</a>
+  <a href="day2.html">📅 第2天</a>
+  <a href="day3.html">📅 第3天</a>
+</div>
+
+<div class="day-header">
+  <h1>第2天 · 清朝第1章後半 + 第2章全</h1>
+  <div class="subtitle">共 7 節 · 每節30分鐘</div>
+</div>
+
+<div class="progress-text">
+  學習進度：已完成 <span id="done-count">0</span> / 7 節
+</div>
+<div class="progress-bar">
+  <div id="progress-fill" class="progress-fill"></div>
+</div>
+
+
+    <div class="segment" id="seg1">
+      <div class="segment-header" onclick="toggleSegment('seg1')">
+        <span class="seg-num">1</span>
+        <span class="seg-title">· 清朝第1章後半 + 第2章</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg2">
+      <div class="segment-header" onclick="toggleSegment('seg2')">
+        <span class="seg-num">2</span>
+        <span class="seg-title">清初民族政策</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>「因俗而治」策略</h4>
+
+<blockquote>
+The Qing ruled a multi-ethnic empire. They used different policies for different groups.<br>
+清朝統治多民族帝國，對不同民族用不同政策。<br>
+</blockquote>
+
+<h4>對漢人：一手胡蘿蔔，一手大棒</h4>
+
+<table><tr><td>懷柔政策（胡蘿蔔）</td><td>高壓政策（大棒）</td></tr>
+<tr><td>禮葬明思宗 → 爭取漢人支持</td><td>剃髮令 → 留頭不留髮</td></tr>
+<tr><td>開科取士 → 吸納漢人讀書人</td><td>圈地 → 強佔漢人土地</td></tr>
+<tr><td>滿漢官員並用</td><td>滿漢不通婚</td></tr>
+</table>
+<h4>對其他民族速記</h4>
+
+<table><tr><td>民族</td><td>管理方式</td><td>一句話記</td></tr>
+<tr><td>蒙古</td><td>聯姻 + 盟旗制度</td><td>嫁女兒、編旗子</td></tr>
+<tr><td>西藏</td><td>金瓶掣簽 + 駐藏大臣</td><td>抽籤選活佛</td></tr>
+<tr><td>西南少數民族</td><td>改土歸流</td><td>廢土司、派朝廷官</td></tr>
+<tr><td>新疆回部</td><td>武力平定</td><td>不服就打</td></tr>
+</table>
+<blockquote>
+<strong>金瓶掣簽</strong>：達賴、班禪等活佛轉世時，把候選人名字放進金瓶抽籤決定。<br>
+<strong>改土歸流</strong>：廢除當地土司，改由朝廷派官直接治理。<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 清廷對漢人用了哪些懷柔政策？哪些高壓政策？</p>
+<p>Q: 「金瓶掣簽」和「改土歸流」分別用在哪裏？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg3">
+      <div class="segment-header" onclick="toggleSegment('seg3')">
+        <span class="seg-num">3</span>
+        <span class="seg-title">清代中衰</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>由盛轉衰的關鍵</h4>
+
+<blockquote>
+乾隆晚年 → 和珅專權 → 貪腐嚴重 → 國庫空虛<br>
+</blockquote>
+<p>></p>
+<blockquote>
+「和珅跌倒，嘉慶吃飽」— 和珅家產相當於清朝十多年財政收入！<br>
+</blockquote>
+
+<h4>四大中衰原因</h4>
+
+<table><tr><td>原因</td><td>說明</td><td>一句話記</td></tr>
+<tr><td>①吏治敗壞</td><td>和珅帶頭貪，下面跟著貪</td><td>上樑不正下樑歪</td></tr>
+<tr><td>②土地兼併</td><td>有錢人買光地，農民沒地種</td><td>富者田連阡陌</td></tr>
+<tr><td>③人口爆炸</td><td>耕地跟不上人口增長</td><td>人多地少吃不飽</td></tr>
+<tr><td>④軍隊腐化</td><td>白蓮教起事暴露軍隊無能</td><td>兵不能打仗了</td></tr>
+</table>
+<blockquote>
+<strong>白蓮教起事（1796-1804）</strong>：民間宗教組織發動，歷時九年，清廷花了二億兩白銀才平定，暴露了清朝國力下降。<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 乾隆晚年出現了甚麼問題？</p>
+<p>Q: 清代中衰有哪四個原因？</p>
+<p>Q: 「和珅跌倒，嘉慶吃飽」是甚麼意思？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg4">
+      <div class="segment-header" onclick="toggleSegment('seg4')">
+        <span class="seg-num">4</span>
+        <span class="seg-title">西力東漸</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>背景：工業革命</h4>
+
+<blockquote>
+18世紀60年代，英國開始工業革命。<br>
+Machine replaced handmade. Production exploded.<br>
+機器取代手工，生產力爆炸式增長。<br>
+</blockquote>
+<p>></p>
+<blockquote>
+英國需要：①原料（棉花、絲綢）②市場（賣商品）<br>
+</blockquote>
+
+<h4>清廷的反應：閉關</h4>
+
+<table><tr><td>政策</td><td>內容</td></tr>
+<tr><td>一口通商</td><td>只開放廣州一個港口</td></tr>
+<tr><td>公行制度</td><td>外商必須通過指定的商行交易</td></tr>
+<tr><td>限制外商</td><td>只能在廣州特定區域活動，不能學中文</td></tr>
+</table>
+<h4>兩次錯過的機會</h4>
+
+<table><tr><td>使團</td><td>年份</td><td>要求</td><td>結果</td></tr>
+<tr><td>馬戛爾尼</td><td>1793</td><td>通商、設使館</td><td>被乾隆拒絕</td></tr>
+<tr><td>阿美士德</td><td>1816</td><td>同</td><td>被嘉慶拒絕</td></tr>
+</table>
+<blockquote>
+後果：英國轉向走私鴉片 → 白銀外流 → 鴉片戰爭<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 工業革命後，英國為甚麼急著要和中國通商？</p>
+<p>Q: 清廷的閉關政策具體是怎樣的？</p>
+<p>Q: 馬戛爾尼和阿美士德使團的結果如何？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg5">
+      <div class="segment-header" onclick="toggleSegment('seg5')">
+        <span class="seg-num">5</span>
+        <span class="seg-title">兩次鴉片戰爭</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>時間線</h4>
+
+<blockquote>
+1839 虎門銷煙 → 1840 戰爭爆發 → 1842 《南京條約》 → 1856 第二次鴉片戰爭 → 1858 《天津條約》 → 1860 《北京條約》<br>
+</blockquote>
+
+<h4>條約速記表</h4>
+
+<table><tr><td>條約</td><td>年份</td><td>戰爭</td><td>主要內容</td><td>一句話記</td></tr>
+<tr><td>《南京條約》</td><td>1842</td><td>第一次鴉片戰爭</td><td>割香港島、五口通商、賠款2100萬兩</td><td>割香港開五口</td></tr>
+<tr><td>《天津條約》</td><td>1858</td><td>第二次</td><td>增開商埠、外國公使進京</td><td>多開幾個口</td></tr>
+<tr><td>《北京條約》</td><td>1860</td><td>第二次</td><td>割九龍半島、准許華工出國</td><td>再割九龍</td></tr>
+</table>
+<blockquote>
+<strong>火燒圓明園</strong>：1860年英法聯軍攻入北京，放火燒毀圓明園——世界園林藝術的奇蹟。<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 林則徐為甚麼要虎門銷煙？</p>
+<p>Q: 三個條約分別在哪一年簽訂？割讓了哪些地方？</p>
+<p>Q: 圓明園被誰燒了？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg6">
+      <div class="segment-header" onclick="toggleSegment('seg6')">
+        <span class="seg-num">6</span>
+        <span class="seg-title">太平天國運動</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>時間線速記</h4>
+
+<blockquote>
+1851 金田起義 → 1853 定都天京 → 1856 天京事變 → 1864 天京陷落<br>
+</blockquote>
+
+<h4>洪秀全的一生（一句話版）</h4>
+
+<blockquote>
+科舉落榜 → 創拜上帝會 → 金田起義稱天王 → 定都南京 → 天京事變內部互殺 → 病逝 → 天國滅亡<br>
+</blockquote>
+
+<h4>影響（三個關鍵）</h4>
+
+<table><tr><td>影響</td><td>說明</td></tr>
+<tr><td>①元氣大傷</td><td>死亡2000-5000萬人，江南經濟崩潰</td></tr>
+<tr><td>②漢人將領抬頭</td><td>曾國藩、李鴻章因鎮壓有功，被重用</td></tr>
+<tr><td>③催生洋務運動</td><td>洋槍隊讓清廷見識到西方武器威力</td></tr>
+</table>
+<blockquote>
+<strong>天京事變</strong>：太平天國內部權力鬥爭，楊秀清、韋昌輝等互相殘殺，運動由盛轉衰的轉折點。<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 太平天國為甚麼會由盛轉衰？</p>
+<p>Q: 太平天國對清朝有哪三個深遠影響？</p>
+<p>Q: 常勝軍是甚麼？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg7">
+      <div class="segment-header" onclick="toggleSegment('seg7')">
+        <span class="seg-num">7</span>
+        <span class="seg-title">甲午戰爭 + 八國聯軍</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>甲午戰爭（1894-1895）</h4>
+
+<blockquote>
+日本明治維新 → 向外擴張 → 朝鮮東學黨起義 → 中日同時出兵 → 戰爭爆發<br>
+</blockquote>
+<p>></p>
+<blockquote>
+<strong>黃海海戰</strong>：鄧世昌率致遠艦衝向敵艦，壯烈殉國。<br>
+<strong>北洋艦隊全軍覆沒</strong> — 洋務運動的成果毀於一旦。<br>
+</blockquote>
+<p>></p>
+<blockquote>
+《馬關條約》：賠款二億兩，割讓台灣、澎湖<br>
+</blockquote>
+
+<h4>八國聯軍（1900）</h4>
+
+<blockquote>
+義和團「扶清滅洋」→ 各國不滿 → 八國聯軍攻陷北京<br>
+</blockquote>
+<p>></p>
+<blockquote>
+《辛丑條約》（1901）：賠款四億五千萬兩——中國近代賠款最多的條約<br>
+</blockquote>
+
+<h4>對比記憶</h4>
+
+<table><tr><td>戰爭</td><td>時間</td><td>條約</td><td>賠款</td><td>割地</td></tr>
+<tr><td>甲午戰爭</td><td>1894-1895</td><td>《馬關條約》</td><td>二億兩</td><td>台灣</td></tr>
+<tr><td>八國聯軍</td><td>1900</td><td>《辛丑條約》</td><td>四億五千萬兩</td><td>無割地（但主權受損）</td></tr>
+</table>
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 甲午戰爭是怎麼打起來的？</p>
+<p>Q: 《馬關條約》和《辛丑條約》分別規定了多少賠款？</p>
+<p>Q: 鄧世昌的故事說明了甚麼？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+
+<button class="reset-btn" onclick="resetAll()">↻ 重置所有進度</button>
+
+</div>
+
+<script>
+function toggleSegment(id) {
+  var seg = document.getElementById(id);
+  var body = seg.querySelector('.segment-body');
+  var toggle = seg.querySelector('.seg-toggle');
+  if (body.style.display === 'none') {
+    body.style.display = 'block';
+    seg.classList.add('open');
+    toggle.textContent = '▼';
+  } else {
+    body.style.display = 'none';
+    seg.classList.remove('open');
+    toggle.textContent = '▶';
+  }
+}
+
+function toggleQuiz(id) {
+  var div = document.getElementById(id);
+  var arrow = div.previousElementSibling.querySelector('.toggle-arrow');
+  if (div.style.display === 'none') {
+    div.style.display = 'block';
+    if (arrow) arrow.textContent = '▼';
+  } else {
+    div.style.display = 'none';
+    if (arrow) arrow.textContent = '▶';
+  }
+}
+
+function updateProgress() {
+  var cbs = document.querySelectorAll('.done-cb:checked');
+  var total = document.querySelectorAll('.done-cb').length;
+  var count = cbs.length;
+  document.getElementById('done-count').textContent = count;
+  var pct = total > 0 ? (count / total * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  
+  // Save to localStorage
+  var ids = [];
+  cbs.forEach(function(cb) {
+    var seg = cb.closest('.segment');
+    if (seg) ids.push(seg.id);
+  });
+  try {
+    localStorage.setItem('history_day2_done', JSON.stringify(ids));
+    localStorage.setItem('history_day2_pct', pct);
+  } catch(e) {}
+}
+
+function resetAll() {
+  if (confirm('確定要重置所有進度嗎？')) {
+    document.querySelectorAll('.done-cb').forEach(function(cb) { cb.checked = false; });
+    updateProgress();
+    try { localStorage.removeItem('history_day2_done'); } catch(e) {}
+  }
+}
+
+// Restore saved state on load
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    var saved = JSON.parse(localStorage.getItem('history_day2_done')) || [];
+    saved.forEach(function(id) {
+      var seg = document.getElementById(id);
+      if (seg) {
+        var cb = seg.querySelector('.done-cb');
+        if (cb) cb.checked = true;
+      }
+    });
+    updateProgress();
+  } catch(e) {}
+});
+</script>
+
+</body>
+</html>

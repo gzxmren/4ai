@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中二中國歷史 · 模擬試卷（深度版）</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: #f5f0eb;
+    color: #2c2c2c;
+    line-height: 1.8;
+    padding: 20px;
+    font-size: 15px;
+  }
+  .paper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .paper { box-shadow: none; padding: 20px; border-radius: 0; }
+    .no-print { display: none; }
+  }
+  
+  h1 { text-align: center; font-size: 24px; color: #5a2d0c; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: #888; font-size: 14px; margin-bottom: 20px; }
+  .exam-info {
+    display: flex; justify-content: space-between;
+    border-top: 2px solid #5a2d0c; border-bottom: 2px solid #5a2d0c;
+    padding: 10px 0; margin-bottom: 20px; font-size: 14px;
+  }
+  
+  .section { margin-bottom: 28px; }
+  .section-title {
+    font-size: 18px; font-weight: 700; color: #8b4513;
+    border-left: 4px solid #8b4513; padding-left: 10px;
+    margin-bottom: 14px;
+  }
+  .section-desc { font-size: 13px; color: #888; margin-bottom: 12px; }
+  
+  .q { margin-bottom: 14px; padding-left: 8px; }
+  .q-num { font-weight: 700; color: #5a2d0c; }
+  .q-text { margin: 4px 0; }
+  .q-blank { 
+    display: inline-block; min-width: 80px; 
+    border-bottom: 1px solid #333; margin: 0 4px; padding: 0 8px;
+  }
+  
+  .choice { margin: 4px 0 4px 24px; }
+  .choice label { cursor: pointer; }
+  .choice input { margin-right: 6px; }
+  
+  .timeline-box {
+    border: 1px solid #e0d5c8; border-radius: 8px;
+    padding: 16px; margin: 10px 0; background: #faf5ef;
+  }
+  .timeline-item {
+    display: flex; align-items: center; gap: 10px; margin: 6px 0;
+  }
+  .timeline-item input { width: 50px; padding: 4px; text-align: center; }
+  
+  .match-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+  .match-table td { padding: 8px 12px; border: 1px solid #e0d5c8; }
+  .match-table .col-a { width: 40%; background: #faf5ef; font-weight: 600; }
+  .match-table .col-b { width: 40%; }
+  .match-table .col-c { width: 20%; }
+  .match-table input { width: 50px; padding: 4px; text-align: center; }
+  
+  .doc-source {
+    background: #f0e8dc; padding: 14px 16px; border-radius: 8px;
+    margin: 10px 0; border-left: 4px solid #8b4513;
+    font-size: 14px; line-height: 1.7;
+  }
+  .doc-source .src-label { font-weight: 700; color: #8b4513; }
+  
+  .answer-box {
+    border: 1px dashed #ccc; border-radius: 6px;
+    min-height: 60px; padding: 8px; margin: 6px 0;
+    background: #fafafa;
+  }
+  .answer-box[contenteditable="true"]:focus { outline: 2px solid #d4a574; }
+  
+  .hint-tag {
+    display: inline-block; font-size: 11px; padding: 2px 8px;
+    border-radius: 10px; margin-left: 6px; font-weight: 600;
+  }
+  .tag-recall { background: #e8f5e9; color: #2e7d32; }
+  .tag-explain { background: #fff3e0; color: #e65100; }
+  .tag-analyze { background: #fce4ec; color: #c62828; }
+  .tag-compare { background: #e3f2fd; color: #1565c0; }
+  .tag-evaluate { background: #f3e5f5; color: #7b1fa2; }
+  
+  .btn-row { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 24px; border: none; border-radius: 8px;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: #8b4513; color: #fff; }
+  .btn-primary:hover { background: #6a3410; }
+  .btn-secondary { background: #e0d5c8; color: #555; }
+  .btn-secondary:hover { background: #d4c5b0; }
+  
+  @media (max-width: 600px) {
+    .paper { padding: 16px; }
+    .match-table { font-size: 13px; }
+    .match-table td { padding: 6px 8px; }
+  }
+  .print-hint { text-align: center; color: #aaa; font-size: 12px; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="paper">
+
+<h1>📖 現代初中中國歷史（中二）</h1>
+<p class="subtitle">模擬試卷 · 深度溫習版</p>
+
+<div class="exam-info">
+  <span>📝 滿分：<strong>100 分</strong></span>
+  <span>⏱ 時限：<strong>90 分鐘</strong></span>
+  <span>📋 題型：<strong>6 類</strong></span>
+</div>
+
+<!-- ════════════ 一、填空題（Recall）════════════ -->
+<div class="section">
+  <div class="section-title">一、填空題（20 分，每題 2 分）<span class="hint-tag tag-recall">recall</span></div>
+  <div class="section-desc">請在橫線上填寫正確答案。</div>
+
+  <div class="q">
+    <span class="q-num">1.</span>
+    <span class="q-text">鄭和原名<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>，因在<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>之戰中立功，被明成祖賜姓「鄭」。</span>
+  </div>
+
+  <div class="q">
+    <span class="q-num">2.</span>
+    <span class="q-text">明成祖於公元<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>年正式遷都北京，北京城的四重布局由內到外依次為：宮城→<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>→內城→外城。</span>
+  </div>
+
+  <div class="q">
+    <span class="q-num">3.</span>
+    <span class="q-text">努爾哈赤創立的兵民合一制度稱為「<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>」；皇太極改族名為「<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>」，國號改為「清」。</span>
+  </div>
+
+  <div class="q">
+    <span class="q-num">4.</span>
+    <span class="q-text">「康雍乾盛世」歷時<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>年；雍正帝推行的重要稅制改革稱為「<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>」。</span>
+  </div>
+
+  <div class="q">
+    <span class="q-num">5.</span>
+    <span class="q-text">清廷對西藏的管理制度包括<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>和派駐<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>。</span>
+  </div>
+
+  <div class="q">
+    <span class="q-num">6.</span>
+    <span class="q-text">1793 年英國派<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>使團來華要求通商，被乾隆皇帝拒絕。</span>
+  </div>
+
+  <div class="q">
+    <span class="q-num">7.</span>
+    <span class="q-text">《<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>》是中國近代第一個不平等條約，規定開放五口通商、割讓<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>。</span>
+  </div>
+
+  <div class="q">
+    <span class="q-num">8.</span>
+    <span class="q-text">太平天國運動中，導致勢力由盛轉衰的關鍵事件是「<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>」。協助清廷鎮壓太平軍的洋槍隊稱為「<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>」。</span>
+  </div>
+
+  <div class="q">
+    <span class="q-num">9.</span>
+    <span class="q-text">中日甲午戰爭後簽訂《<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>》，清廷賠款<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>兩，並割讓台灣。</span>
+  </div>
+
+  <div class="q">
+    <span class="q-num">10.</span>
+    <span class="q-text">洋務運動的口號是「<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>」，由<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>提出；戊戌維新推行了<span class="q-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>天即告失敗。</span>
+  </div>
+</div>
+
+<!-- ════════════ 二、時序題（Understand）════════════ -->
+<div class="section">
+  <div class="section-title">二、時序題（10 分）<span class="hint-tag tag-explain">understand</span></div>
+  <div class="section-desc">以下為太平天國運動由興起到失敗的七個關鍵事件，請按發生先後順序在括號內填入 1 至 7。</div>
+
+  <div class="timeline-box">
+    <div class="timeline-item">
+      <span>（&nbsp;&nbsp;&nbsp;）</span>
+      <span>天京事變——諸王互相殘殺</span>
+    </div>
+    <div class="timeline-item">
+      <span>（&nbsp;&nbsp;&nbsp;）</span>
+      <span>金田起義——洪秀全宣布起事</span>
+    </div>
+    <div class="timeline-item">
+      <span>（&nbsp;&nbsp;&nbsp;）</span>
+      <span>曾國藩組建湘軍，開始反擊</span>
+    </div>
+    <div class="timeline-item">
+      <span>（&nbsp;&nbsp;&nbsp;）</span>
+      <span>天京陷落，太平天國滅亡</span>
+    </div>
+    <div class="timeline-item">
+      <span>（&nbsp;&nbsp;&nbsp;）</span>
+      <span>洪秀全創立拜上帝會</span>
+    </div>
+    <div class="timeline-item">
+      <span>（&nbsp;&nbsp;&nbsp;）</span>
+      <span>定都天京（南京），頒布《天朝田畝制度》</span>
+    </div>
+    <div class="timeline-item">
+      <span>（&nbsp;&nbsp;&nbsp;）</span>
+      <span>洪秀全科舉落第，受基督教啟發</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ 三、配對題（Recall）═══════════════ -->
+<div class="section">
+  <div class="section-title">三、配對題（10 分，每題 2 分）<span class="hint-tag tag-recall">recall</span></div>
+  <div class="section-desc">將左欄的人物與右欄的歷史事件配對，在空格內填寫正確的英文字母。</div>
+
+  <table class="match-table">
+    <tr><td></td><td class="col-a"><strong>人物</strong></td><td class="col-b"><strong>歷史事件／事蹟</strong></td><td class="col-c"><strong>答案</strong></td></tr>
+    <tr><td>1.</td><td class="col-a">康熙皇帝</td><td class="col-b">A. 推行「攤丁入地」政策</td><td><input type="text" placeholder="__"></td></tr>
+    <tr><td>2.</td><td class="col-a">雍正皇帝</td><td class="col-b">B. 虎門銷煙</td><td><input type="text" placeholder="__"></td></tr>
+    <tr><td>3.</td><td class="col-a">林則徐</td><td class="col-b">C. 發起洋務運動，創辦江南製造局</td><td><input type="text" placeholder="__"></td></tr>
+    <tr><td>4.</td><td class="col-a">曾國藩</td><td class="col-b">D. 平定三藩之亂、收復台灣</td><td><input type="text" placeholder="__"></td></tr>
+    <tr><td>5.</td><td class="col-a">詹天佑</td><td class="col-b">E. 設計修建京張鐵路</td><td><input type="text" placeholder="__"></td></tr>
+  </table>
+</div>
+
+<!-- ════════════ 四、選擇題（Recall / Understand）═══ -->
+<div class="section">
+  <div class="section-title">四、選擇題（20 分，每題 2 分）<span class="hint-tag tag-recall">recall/understand</span></div>
+  <div class="section-desc">選出最正確的答案。</div>
+
+  <div class="q">
+    <span class="q-num">1.</span>
+    <span class="q-text">鄭和下西洋的最主要目的是甚麼？</span>
+    <div class="choice"><label><input type="radio" name="mc1" value="A"> A. 探索新大陸</label></div>
+    <div class="choice"><label><input type="radio" name="mc1" value="B"> B. 宣揚國威和拓展貿易</label></div>
+    <div class="choice"><label><input type="radio" name="mc1" value="C"> C. 尋找長生不老藥</label></div>
+    <div class="choice"><label><input type="radio" name="mc1" value="D"> D. 移民海外</label></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">2.</span>
+    <span class="q-text">以下哪項不是明成祖遷都北京的原因？</span>
+    <div class="choice"><label><input type="radio" name="mc2" value="A"> A. 北京北靠燕山，便於防禦</label></div>
+    <div class="choice"><label><input type="radio" name="mc2" value="B"> B. 大運河連接南方，方便運輸物資</label></div>
+    <div class="choice"><label><input type="radio" name="mc2" value="C"> C. 北京是明太祖朱元璋的故鄉</label></div>
+    <div class="choice"><label><input type="radio" name="mc2" value="D"> D. 北京是成祖的龍興之地</label></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">3.</span>
+    <span class="q-text">清初八旗制度的特點是甚麼？</span>
+    <div class="choice"><label><input type="radio" name="mc3" value="A"> A. 旗人享有免稅特權</label></div>
+    <div class="choice"><label><input type="radio" name="mc3" value="B"> B. 兵民合一，平時生產，戰時作戰</label></div>
+    <div class="choice"><label><input type="radio" name="mc3" value="C"> C. 只有滿族人才可加入八旗</label></div>
+    <div class="choice"><label><input type="radio" name="mc3" value="D"> D. 八旗軍隊全部駐守北京</label></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">4.</span>
+    <span class="q-text">清廷為爭取漢人支持，採取了以下哪項措施？</span>
+    <div class="choice"><label><input type="radio" name="mc4" value="A"> A. 剃髮令</label></div>
+    <div class="choice"><label><input type="radio" name="mc4" value="B"> B. 圈地</label></div>
+    <div class="choice"><label><input type="radio" name="mc4" value="C"> C. 禮葬明思宗</label></div>
+    <div class="choice"><label><input type="radio" name="mc4" value="D"> D. 滿漢不通婚</label></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">5.</span>
+    <span class="q-text">以下哪個條約割讓了台灣給日本？</span>
+    <div class="choice"><label><input type="radio" name="mc5" value="A"> A. 《南京條約》</label></div>
+    <div class="choice"><label><input type="radio" name="mc5" value="B"> B. 《馬關條約》</label></div>
+    <div class="choice"><label><input type="radio" name="mc5" value="C"> C. 《北京條約》</label></div>
+    <div class="choice"><label><input type="radio" name="mc5" value="D"> D. 《辛丑條約》</label></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">6.</span>
+    <span class="q-text">洋務運動的口號是「師夷長技以制夷」，其中「夷」指的是甚麼？</span>
+    <div class="choice"><label><input type="radio" name="mc6" value="A"> A. 西方國家</label></div>
+    <div class="choice"><label><input type="radio" name="mc6" value="B"> B. 日本</label></div>
+    <div class="choice"><label><input type="radio" name="mc6" value="C"> C. 少數民族</label></div>
+    <div class="choice"><label><input type="radio" name="mc6" value="D"> D. 海盜</label></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">7.</span>
+    <span class="q-text">以下哪項是太平天國運動由盛轉衰的關鍵事件？</span>
+    <div class="choice"><label><input type="radio" name="mc7" value="A"> A. 金田起義</label></div>
+    <div class="choice"><label><input type="radio" name="mc7" value="B"> B. 定都天京</label></div>
+    <div class="choice"><label><input type="radio" name="mc7" value="C"> C. 天京事變</label></div>
+    <div class="choice"><label><input type="radio" name="mc7" value="D"> D. 天京陷落</label></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">8.</span>
+    <span class="q-text">戊戌維新只推行了多少天就宣告失敗？</span>
+    <div class="choice"><label><input type="radio" name="mc8" value="A"> A. 34 天</label></div>
+    <div class="choice"><label><input type="radio" name="mc8" value="B"> B. 73 天</label></div>
+    <div class="choice"><label><input type="radio" name="mc8" value="C"> C. 103 天</label></div>
+    <div class="choice"><label><input type="radio" name="mc8" value="D"> D. 153 天</label></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">9.</span>
+    <span class="q-text">清末新政中，令立憲派大失所望的事件是甚麼？</span>
+    <div class="choice"><label><input type="radio" name="mc9" value="A"> A. 廢除科舉</label></div>
+    <div class="choice"><label><input type="radio" name="mc9" value="B"> B. 成立「皇族內閣」</label></div>
+    <div class="choice"><label><input type="radio" name="mc9" value="C"> C. 八國聯軍入侵</label></div>
+    <div class="choice"><label><input type="radio" name="mc9" value="D"> D. 頒布《辛丑條約》</label></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">10.</span>
+    <span class="q-text">詹天佑設計的「人」字形鐵路位於哪條鐵路？</span>
+    <div class="choice"><label><input type="radio" name="mc10" value="A"> A. 京漢鐵路</label></div>
+    <div class="choice"><label><input type="radio" name="mc10" value="B"> B. 津浦鐵路</label></div>
+    <div class="choice"><label><input type="radio" name="mc10" value="C"> C. 京張鐵路</label></div>
+    <div class="choice"><label><input type="radio" name="mc10" value="D"> D. 滬杭鐵路</label></div>
+  </div>
+</div>
+
+<!-- ════════════ 五、史料分析題（Analyze/Evaluate）═══ -->
+<div class="section">
+  <div class="section-title">五、史料分析題（40 分）<span class="hint-tag tag-analyze">analyze</span> <span class="hint-tag tag-evaluate">evaluate</span></div>
+  <div class="section-desc">細閱以下各則資料，然後回答問題。請引用資料中的具體內容來支持你的答案。</div>
+
+  <!-- 資料一：一手史料 — 鄭和隨行人員的記載 -->
+  <p style="margin-top:16px;"><strong>資料一：</strong></p>
+  <div class="doc-source">
+    <div><span class="src-label">資料一：</span>馬歡《瀛涯勝覽》（約 1451 年）</div>
+    <p style="margin-top:6px;">「寶船到彼（祖法兒國，今阿拉伯半島一帶），宣讀詔書，賞賜國王。當地人將乳香、蘆薈、沒藥等特產拿出，以換取絲綢、瓷器等東西。各國國王熱烈歡迎，爭相派遣使臣來華朝貢。」</p>
+    <p style="margin-top:6px; font-size:12px; color:#888;">——馬歡是鄭和船隊的通事（翻譯官），隨同三次下西洋，親歷各國</p>
+  </div>
+
+  <div class="q">
+    <span class="q-num">(a) 【4 分】</span>
+    <span class="q-text">資料一屬於一手史料還是二手史料？為甚麼？（2 分）這份史料有甚麼優點和局限？（2 分）</span>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">(b) 【6 分】</span>
+    <span class="q-text">根據資料一，指出鄭和下西洋在經濟和外交兩方面的活動。請引用資料中的具體詞句來論證。（6 分）</span>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+  <!-- 資料二：一手史料 — 反對派的觀點 -->
+  <p style="margin-top:20px;"><strong>資料二：</strong></p>
+  <div class="doc-source">
+    <div><span class="src-label">資料二：</span>嚴從簡《殊域周咨錄》（1574 年）</div>
+    <p style="margin-top:6px;">「（鄭和）費了數千萬錢糧，數萬計的性命……雖然帶了不少珍異寶物回國，但又有甚麼益處呢？人民的膏血都被耗盡了。」</p>
+    <p style="margin-top:6px; font-size:12px; color:#888;">——嚴從簡是明朝官員，寫於下西洋停止約 100 年後</p>
+  </div>
+
+  <div class="q">
+    <span class="q-num">(c) 【4 分】</span>
+    <span class="q-text">資料一和資料二對鄭和下西洋的評價有甚麼不同？試引用各自內容加以說明。（4 分）</span>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">(d) 【6 分】</span>
+    <span class="q-text">假如你是明憲宗，你認為應該恢復下西洋嗎？試根據資料一、資料二並運用所學知識，解釋你的立場。注意：須正反兩面論證，並引用資料中的證據。（6 分）</span>
+    <span class="hint-tag tag-evaluate">evaluate</span>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+  <!-- 資料三：史料 — 不平等條約的數據 -->
+  <p style="margin-top:20px;"><strong>資料三：晚清不平等條約數據表</strong></p>
+  <div class="doc-source">
+    <div><span class="src-label">資料三：</span>根據條約原文整理</div>
+    <table style="width:100%; border-collapse:collapse; margin-top:8px; font-size:14px;">
+      <tr style="background:#ddd;">
+        <th style="padding:4px 8px; border:1px solid #ccc; text-align:left;">條約</th>
+        <th style="padding:4px 8px; border:1px solid #ccc; text-align:left;">年份</th>
+        <th style="padding:4px 8px; border:1px solid #ccc; text-align:left;">賠款</th>
+        <th style="padding:4px 8px; border:1px solid #ccc; text-align:left;">割地</th>
+      </tr>
+      <tr>
+        <td style="padding:4px 8px; border:1px solid #ccc;">《南京條約》</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">1842</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">2100 萬兩</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">香港島</td>
+      </tr>
+      <tr>
+        <td style="padding:4px 8px; border:1px solid #ccc;">《北京條約》</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">1860</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">增至 800 萬兩（另加）</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">九龍半島南部</td>
+      </tr>
+      <tr>
+        <td style="padding:4px 8px; border:1px solid #ccc;">《馬關條約》</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">1895</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">二億兩</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">台灣、澎湖</td>
+      </tr>
+      <tr>
+        <td style="padding:4px 8px; border:1px solid #ccc;">《辛丑條約》</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">1901</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">四億五千萬兩</td>
+        <td style="padding:4px 8px; border:1px solid #ccc;">無（但主權嚴重受損）</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="q">
+    <span class="q-num">(e) 【4 分】</span>
+    <span class="q-text">根據資料三，指出從 1842 年到 1901 年間，中國的領土損失呈現怎樣的趨勢？請引用數據說明。（4 分）</span>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">(f) 【6 分】</span>
+    <span class="q-text">資料三中的賠款金額變化反映了甚麼問題？你認為巨額賠款對清廷造成了怎樣的影響？請引用具體數字。</span>
+    <span class="hint-tag tag-analyze">analyze</span>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+  <!-- 資料四：史料 — 洋務 vs 維新 -->
+  <p style="margin-top:20px;"><strong>資料四：</strong></p>
+  <div class="doc-source">
+    <div><span class="src-label">資料四甲：</span>李鴻章語錄（約 1864 年）</div>
+    <p>「中國文武制度，事事遠出西人之上，獨火器萬不能及……中國欲自強，則莫如學習外國利器。」</p>
+    <p style="margin-top:8px;"><span class="src-label">資料四乙：</span>康有為《上清帝第五書》（1897 年）</p>
+    <p>「各國並立，爭相雄長，變法者強，守舊者亡……請皇上以俄國大彼得之心為心法，以日本明治之政為政法。」</p>
+  </div>
+
+  <div class="q">
+    <span class="q-num">(g) 【6 分】</span>
+    <span class="q-text">根據資料四，洋務派（甲）和維新派（乙）的主張有甚麼主要分別？試從**改革範圍**和**核心觀點**兩個維度進行比較。</span>
+    <span class="hint-tag tag-compare">compare</span>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+  <div class="q">
+    <span class="q-num">(h) 【4 分】</span>
+    <span class="q-text">你認為維新派的觀點比洋務派進步嗎？試解釋你的看法。（4 分）</span>
+    <span class="hint-tag tag-evaluate">evaluate</span>
+    <div class="answer-box" contenteditable="true"></div>
+  </div>
+
+</div>
+
+<!-- 按鈕列 -->
+<div class="btn-row no-print">
+  <button class="btn btn-primary" onclick="window.print()">🖨️ 列印試卷</button>
+  <button class="btn btn-secondary" onclick="location.href='模擬試卷_答案.html'">📄 查看答案</button>
+</div>
+
+<div class="print-hint">— 試卷結束 —</div>
+
+</div>
+</body>
+</html>

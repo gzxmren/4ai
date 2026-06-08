@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中二中國歷史 · 第3天 · 清朝第3章 + 總複習</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: #f5f0eb;
+    color: #2c2c2c;
+    line-height: 1.8;
+    font-size: 16px;
+    padding: 16px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  
+  /* Day header */
+  .day-header {
+    background: linear-gradient(135deg, #1565c0, #1565c0dd);
+    color: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+    position: relative;
+  }
+  .day-header h1 { font-size: 22px; margin: 0; }
+  .day-header .subtitle { font-size: 14px; opacity: 0.9; margin-top: 6px; }
+  
+  /* Progress bar */
+  .progress-bar {
+    background: #e0d5c8;
+    border-radius: 20px;
+    height: 10px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1565c0, #1565c0aa);
+    border-radius: 20px;
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+  .progress-text {
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  /* Segment card */
+  .segment {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border-left: 4px solid #1565c0;
+  }
+  .segment-header {
+    padding: 14px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .segment-header:hover { background: #faf5ef; }
+  .seg-num {
+    background: #1565c0;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .seg-title { flex: 1; font-weight: 600; color: #333; font-size: 15px; }
+  .seg-toggle { color: #999; font-size: 14px; transition: transform 0.3s; }
+  .segment.open .seg-toggle { transform: rotate(90deg); }
+  
+  .segment-body {
+    padding: 0 20px 20px;
+    border-top: 1px solid #f0e8dc;
+  }
+  .segment-body h4 {
+    color: #1565c0;
+    margin: 16px 0 8px;
+    font-size: 16px;
+  }
+  .segment-body p { margin: 8px 0; }
+  .segment-body blockquote {
+    margin: 10px 0;
+    padding: 10px 14px;
+    background: #faf5ef;
+    border-left: 4px solid #1565c066;
+    border-radius: 4px;
+    color: #555;
+    font-size: 14px;
+  }
+  .segment-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .segment-body td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  .segment-body tr:nth-child(even) td { background: #faf5ef; }
+  hr { border: none; border-top: 1px solid #e0d5c8; margin: 14px 0; }
+  
+  /* Quiz */
+  .quiz-section {
+    margin-top: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #e8f5e9;
+  }
+  .quiz-header {
+    background: #e8f5e9;
+    padding: 10px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2e7d32;
+    user-select: none;
+  }
+  .quiz-header:hover { background: #c8e6c9; }
+  .quiz-icon { font-size: 18px; }
+  .toggle-arrow { margin-left: auto; transition: transform 0.3s; }
+  .quiz-answers {
+    padding: 12px 16px;
+    background: #f1f8e9;
+  }
+  .q-text {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Done checkbox */
+  .seg-done {
+    margin-top: 12px;
+    padding: 8px 0;
+    border-top: 1px dashed #e0d5c8;
+    font-size: 14px;
+  }
+  .seg-done label { cursor: pointer; color: #666; }
+  .seg-done input { margin-right: 6px; }
+  
+  /* Day nav */
+  .day-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .day-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .day-nav a.active {
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .day-nav a:not(.active) {
+    background: #e0d5c8;
+    color: #666;
+  }
+  .day-nav a:not(.active):hover { background: #d4c5b0; }
+  
+  /* Responsive */
+  @media (max-width: 500px) {
+    .segment-header { padding: 12px 14px; }
+    .seg-title { font-size: 14px; }
+    .day-nav a { font-size: 12px; padding: 8px 6px; }
+  }
+  
+  /* Reset all button */
+  .reset-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 8px 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    color: #999;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover {
+    border-color: #1565c0;
+    color: #1565c0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="day-nav">
+  <a href="day1.html" class="active" style="background:#1565c0;color:#fff">📅 第1天</a>
+  <a href="day2.html">📅 第2天</a>
+  <a href="day3.html">📅 第3天</a>
+</div>
+
+<div class="day-header">
+  <h1>第3天 · 清朝第3章 + 總複習</h1>
+  <div class="subtitle">共 7 節 · 每節30分鐘</div>
+</div>
+
+<div class="progress-text">
+  學習進度：已完成 <span id="done-count">0</span> / 7 節
+</div>
+<div class="progress-bar">
+  <div id="progress-fill" class="progress-fill"></div>
+</div>
+
+
+    <div class="segment" id="seg1">
+      <div class="segment-header" onclick="toggleSegment('seg1')">
+        <span class="seg-num">1</span>
+        <span class="seg-title">· 清朝第3章 + 總複習</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg2">
+      <div class="segment-header" onclick="toggleSegment('seg2')">
+        <span class="seg-num">2</span>
+        <span class="seg-title">洋務運動背景與目標</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>背景：內憂外患</h4>
+
+<blockquote>
+兩次鴉片戰爭戰敗 + 太平天國的震撼 → 清廷終於承認：「洋人真的比我們強。」<br>
+</blockquote>
+<p>></p>
+<blockquote>
+口號：<strong>「師夷長技以制夷」</strong>（魏源提出）<br>
+意思：學習外國的長處來對付外國人。<br>
+</blockquote>
+
+<h4>三大目標</h4>
+
+<table><tr><td>目標</td><td>內容</td><td>一句話記</td></tr>
+<tr><td>自強</td><td>建軍工廠、造軍艦</td><td>自己造槍炮</td></tr>
+<tr><td>求富</td><td>辦民用企業賺錢</td><td>自己辦工廠</td></tr>
+<tr><td>育才</td><td>設學堂、派留學生</td><td>自己培養人</td></tr>
+</table>
+<h4>重要人物速記</h4>
+
+<blockquote>
+<strong>曾國藩</strong> — 湘軍領袖，創辦江南製造局<br>
+<strong>李鴻章</strong> — 淮軍領袖，創辦輪船招商局、北洋艦隊<br>
+<strong>左宗棠</strong> — 創辦福州船政局<br>
+<strong>張之洞</strong> — 創辦漢陽鐵廠<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 「師夷長技以制夷」是甚麼意思？</p>
+<p>Q: 洋務運動的三大目標是甚麼？</p>
+<p>Q: 曾國藩和李鴻章分別做了甚麼？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg3">
+      <div class="segment-header" onclick="toggleSegment('seg3')">
+        <span class="seg-num">3</span>
+        <span class="seg-title">洋務運動的成就與局限</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>成就</h4>
+
+<table><tr><td>領域</td><td>具體成果</td><td>一句話記</td></tr>
+<tr><td>軍事</td><td>江南製造局、北洋艦隊</td><td>亞洲第一艦隊</td></tr>
+<tr><td>實業</td><td>輪船招商局、開平煤礦</td><td>中國第一批工廠</td></tr>
+<tr><td>外交</td><td>總理各國事務衙門</td><td>有了外交部門</td></tr>
+<tr><td>教育</td><td>同文館、留美幼童</td><td>第一批留學生</td></tr>
+</table>
+<h4>局限與失敗</h4>
+
+<blockquote>
+問題：<strong>只學技術，不學制度</strong>（「中體西用」）<br>
+</blockquote>
+<p>></p>
+<blockquote>
+就像：買了最好的電腦，但還是用算盤的思維去操作。<br>
+</blockquote>
+<p>></p>
+<blockquote>
+<strong>失敗標誌：1895年甲午戰爭北洋艦隊全軍覆沒</strong><br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 洋務運動有哪些成就？</p>
+<p>Q: 洋務運動為甚麼會失敗？</p>
+<p>Q: 「中體西用」是甚麼意思？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg4">
+      <div class="segment-header" onclick="toggleSegment('seg4')">
+        <span class="seg-num">4</span>
+        <span class="seg-title">戊戌維新</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>背景</h4>
+
+<blockquote>
+甲午戰敗 → 全國震驚 → 康有為、梁啟超鼓吹變法 → 光緒帝決心改革<br>
+</blockquote>
+
+<h4>「百日維新」（1898年）</h4>
+
+<table><tr><td>領域</td><td>改革措施</td><td>一句話記</td></tr>
+<tr><td>政治</td><td>裁冗官、廣開言路</td><td>精簡政府</td></tr>
+<tr><td>經濟</td><td>設農工商總局、辦實業</td><td>鼓勵做生意</td></tr>
+<tr><td>軍事</td><td>新法練軍、武舉改槍炮</td><td>練新兵</td></tr>
+<tr><td>教育</td><td>廢八股、設學堂</td><td>改考試</td></tr>
+</table>
+<h4>失敗原因</h4>
+
+<blockquote>
+慈禧太后發動政變 → 囚禁光緒帝 → 處死六君子 → 維新失敗<br>
+</blockquote>
+<p>></p>
+<blockquote>
+守舊勢力太強，改革太快太急。<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 戊戌維新推行了多久？為甚麼叫「百日維新」？</p>
+<p>Q: 維新失敗的原因是甚麼？</p>
+<p>Q: 康有為和梁啟超是甚麼人？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg5">
+      <div class="segment-header" onclick="toggleSegment('seg5')">
+        <span class="seg-num">5</span>
+        <span class="seg-title">清末新政 + 三場改革對比</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>背景</h4>
+
+<blockquote>
+八國聯軍後，清廷威信掃地，被迫全面改革。<br>
+</blockquote>
+
+<h4>新政內容</h4>
+
+<table><tr><td>領域</td><td>措施</td></tr>
+<tr><td>政治</td><td>預備立憲、廢除科舉</td></tr>
+<tr><td>經濟</td><td>設立商部、獎勵實業</td></tr>
+<tr><td>軍事</td><td>編練新軍（北洋新軍）</td></tr>
+<tr><td>教育</td><td>設學堂、派留學生</td></tr>
+</table>
+<h4>結果：加速滅亡</h4>
+
+<blockquote>
+成立「皇族內閣」——13人中9人是滿人，其中多為皇族。<br>
+立憲派大失所望 → 轉而支持革命 → 新軍武昌起義 → 清朝滅亡<br>
+</blockquote>
+
+<h4>三場改革對比表</h4>
+
+<table><tr><td>項目</td><td>洋務運動</td><td>戊戌維新</td><td>清末新政</td></tr>
+<tr><td>時間</td><td>1861-1895</td><td>1898（103天）</td><td>1901-1911</td></tr>
+<tr><td>觸發</td><td>鴉片戰爭+太平天國</td><td>甲午戰敗</td><td>八國聯軍</td></tr>
+<tr><td>態度</td><td>主動學習</td><td>主動求變</td><td>被迫改革</td></tr>
+<tr><td>範圍</td><td>局部（軍事、工業）</td><td>全面（含政治）</td><td>全面（含預備立憲）</td></tr>
+<tr><td>結果</td><td>甲午戰敗證明失敗</td><td>慈禧政變推翻</td><td>加速革命，清朝亡</td></tr>
+</table>
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 清末新政和戊戌維新有甚麼不同？</p>
+<p>Q: 為甚麼清末新政反而加速了清朝滅亡？</p>
+<p>Q: 三場改革運動為甚麼都失敗了？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg6">
+      <div class="segment-header" onclick="toggleSegment('seg6')">
+        <span class="seg-num">6</span>
+        <span class="seg-title">詹天佑 + 因果鏈</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>詹天佑與京張鐵路</h4>
+
+<blockquote>
+第一批留美幼童 → 耶魯大學土木工程系 → 回國修建鐵路<br>
+</blockquote>
+<p>></p>
+<blockquote>
+<strong>京張鐵路</strong>（1905-1909）：中國人自行設計建造的第一條鐵路<br>
+</blockquote>
+<p>></p>
+<blockquote>
+<strong>「人」字形線路</strong>：八達嶺坡度太陡，用兩台機車前拉後推<br>
+</blockquote>
+<p>></p>
+<blockquote>
+被譽為「中國鐵路之父」<br>
+</blockquote>
+
+<h4>因果鏈（考頻最高）</h4>
+
+<blockquote>
+鴉片戰爭 → 洋務運動（學技術）<br>
+↓<br>
+甲午戰敗 → 戊戌維新（學制度）<br>
+↓<br>
+八國聯軍 → 清末新政（被迫全面改革）<br>
+↓<br>
+新政令人失望 → 革命思潮高漲 → 武昌起義 → 清朝滅亡<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 詹天佑為甚麼被稱為「中國鐵路之父」？</p>
+<p>Q: 請按順序說出清朝滅亡的因果鏈。</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg7">
+      <div class="segment-header" onclick="toggleSegment('seg7')">
+        <span class="seg-num">7</span>
+        <span class="seg-title">總複習</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>一站到底快速問答（每題15秒）</h4>
+
+<p><strong>第一輪：人物配對</strong></p>
+
+<p>1. 鄭和 → 七下西洋</p>
+<p>2. 努爾哈赤 → 建立後金、八旗</p>
+<p>3. 康熙 → 平三藩、收台灣</p>
+<p>4. 雍正 → 攤丁入地</p>
+<p>5. 乾隆 → 修《四庫全書》</p>
+<p>6. 林則徐 → 虎門銷煙</p>
+<p>7. 洪秀全 → 太平天國</p>
+<p>8. 曾國藩 → 湘軍、洋務</p>
+<p>9. 康有為 → 戊戌維新</p>
+<p>10. 詹天佑 → 京張鐵路</p>
+
+<p><strong>第二輪：年份搶答</strong></p>
+
+<p>- 1405-1433 → 鄭和下西洋</p>
+<p>- 1644 → 清兵入關</p>
+<p>- 1662-1795 → 康雍乾盛世</p>
+<p>- 1842 → 《南京條約》</p>
+<p>- 1851-1864 → 太平天國</p>
+<p>- 1895 → 《馬關條約》</p>
+<p>- 1898 → 戊戌維新</p>
+<p>- 1901 → 《辛丑條約》</p>
+
+<p><strong>第三輪：為甚麼？</strong></p>
+
+<p>1. 為甚麼鄭和之後不再下西洋？</p>
+<p>2. 為甚麼明朝要遷都北京？</p>
+<p>3. 為甚麼清朝能入關統治中國？</p>
+<p>4. 為甚麼清朝會從盛世走向衰落？</p>
+<p>5. 為甚麼洋務運動會失敗？</p>
+<p>6. 為甚麼清末新政反而加速了清朝滅亡？</p>
+
+<hr>
+
+<blockquote>
+<strong>互動方式建議</strong>：<br>
+- 家長讀問題，孩子回答，答對過關，答錯標記<br>
+- 第三輪「為甚麼」是開放式題目，說出2-3個要點即可<br>
+- 三天把所有錯題集中到最後一頁，留到考試前再看一遍<br>
+</blockquote>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+
+<button class="reset-btn" onclick="resetAll()">↻ 重置所有進度</button>
+
+</div>
+
+<script>
+function toggleSegment(id) {
+  var seg = document.getElementById(id);
+  var body = seg.querySelector('.segment-body');
+  var toggle = seg.querySelector('.seg-toggle');
+  if (body.style.display === 'none') {
+    body.style.display = 'block';
+    seg.classList.add('open');
+    toggle.textContent = '▼';
+  } else {
+    body.style.display = 'none';
+    seg.classList.remove('open');
+    toggle.textContent = '▶';
+  }
+}
+
+function toggleQuiz(id) {
+  var div = document.getElementById(id);
+  var arrow = div.previousElementSibling.querySelector('.toggle-arrow');
+  if (div.style.display === 'none') {
+    div.style.display = 'block';
+    if (arrow) arrow.textContent = '▼';
+  } else {
+    div.style.display = 'none';
+    if (arrow) arrow.textContent = '▶';
+  }
+}
+
+function updateProgress() {
+  var cbs = document.querySelectorAll('.done-cb:checked');
+  var total = document.querySelectorAll('.done-cb').length;
+  var count = cbs.length;
+  document.getElementById('done-count').textContent = count;
+  var pct = total > 0 ? (count / total * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  
+  // Save to localStorage
+  var ids = [];
+  cbs.forEach(function(cb) {
+    var seg = cb.closest('.segment');
+    if (seg) ids.push(seg.id);
+  });
+  try {
+    localStorage.setItem('history_day3_done', JSON.stringify(ids));
+    localStorage.setItem('history_day3_pct', pct);
+  } catch(e) {}
+}
+
+function resetAll() {
+  if (confirm('確定要重置所有進度嗎？')) {
+    document.querySelectorAll('.done-cb').forEach(function(cb) { cb.checked = false; });
+    updateProgress();
+    try { localStorage.removeItem('history_day3_done'); } catch(e) {}
+  }
+}
+
+// Restore saved state on load
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    var saved = JSON.parse(localStorage.getItem('history_day3_done')) || [];
+    saved.forEach(function(id) {
+      var seg = document.getElementById(id);
+      if (seg) {
+        var cb = seg.querySelector('.done-cb');
+        if (cb) cb.checked = true;
+      }
+    });
+    updateProgress();
+  } catch(e) {}
+});
+</script>
+
+</body>
+</html>

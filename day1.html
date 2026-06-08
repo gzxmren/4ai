@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中二中國歷史 · 第1天 · 明代（鄭和+北京城）+ 清朝開端</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: #f5f0eb;
+    color: #2c2c2c;
+    line-height: 1.8;
+    font-size: 16px;
+    padding: 16px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  
+  /* Day header */
+  .day-header {
+    background: linear-gradient(135deg, #8b4513, #8b4513dd);
+    color: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    text-align: center;
+    position: relative;
+  }
+  .day-header h1 { font-size: 22px; margin: 0; }
+  .day-header .subtitle { font-size: 14px; opacity: 0.9; margin-top: 6px; }
+  
+  /* Progress bar */
+  .progress-bar {
+    background: #e0d5c8;
+    border-radius: 20px;
+    height: 10px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8b4513, #8b4513aa);
+    border-radius: 20px;
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+  .progress-text {
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  
+  /* Segment card */
+  .segment {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    overflow: hidden;
+    border-left: 4px solid #8b4513;
+  }
+  .segment-header {
+    padding: 14px 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .segment-header:hover { background: #faf5ef; }
+  .seg-num {
+    background: #8b4513;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .seg-title { flex: 1; font-weight: 600; color: #333; font-size: 15px; }
+  .seg-toggle { color: #999; font-size: 14px; transition: transform 0.3s; }
+  .segment.open .seg-toggle { transform: rotate(90deg); }
+  
+  .segment-body {
+    padding: 0 20px 20px;
+    border-top: 1px solid #f0e8dc;
+  }
+  .segment-body h4 {
+    color: #8b4513;
+    margin: 16px 0 8px;
+    font-size: 16px;
+  }
+  .segment-body p { margin: 8px 0; }
+  .segment-body blockquote {
+    margin: 10px 0;
+    padding: 10px 14px;
+    background: #faf5ef;
+    border-left: 4px solid #8b451366;
+    border-radius: 4px;
+    color: #555;
+    font-size: 14px;
+  }
+  .segment-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .segment-body td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  .segment-body tr:nth-child(even) td { background: #faf5ef; }
+  hr { border: none; border-top: 1px solid #e0d5c8; margin: 14px 0; }
+  
+  /* Quiz */
+  .quiz-section {
+    margin-top: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #e8f5e9;
+  }
+  .quiz-header {
+    background: #e8f5e9;
+    padding: 10px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2e7d32;
+    user-select: none;
+  }
+  .quiz-header:hover { background: #c8e6c9; }
+  .quiz-icon { font-size: 18px; }
+  .toggle-arrow { margin-left: auto; transition: transform 0.3s; }
+  .quiz-answers {
+    padding: 12px 16px;
+    background: #f1f8e9;
+  }
+  .q-text {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Done checkbox */
+  .seg-done {
+    margin-top: 12px;
+    padding: 8px 0;
+    border-top: 1px dashed #e0d5c8;
+    font-size: 14px;
+  }
+  .seg-done label { cursor: pointer; color: #666; }
+  .seg-done input { margin-right: 6px; }
+  
+  /* Day nav */
+  .day-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .day-nav a {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .day-nav a.active {
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .day-nav a:not(.active) {
+    background: #e0d5c8;
+    color: #666;
+  }
+  .day-nav a:not(.active):hover { background: #d4c5b0; }
+  
+  /* Responsive */
+  @media (max-width: 500px) {
+    .segment-header { padding: 12px 14px; }
+    .seg-title { font-size: 14px; }
+    .day-nav a { font-size: 12px; padding: 8px 6px; }
+  }
+  
+  /* Reset all button */
+  .reset-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 8px 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    color: #999;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover {
+    border-color: #8b4513;
+    color: #8b4513;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="day-nav">
+  <a href="day1.html" class="active" style="background:#8b4513;color:#fff">📅 第1天</a>
+  <a href="day2.html">📅 第2天</a>
+  <a href="day3.html">📅 第3天</a>
+</div>
+
+<div class="day-header">
+  <h1>第1天 · 明代（鄭和+北京城）+ 清朝開端</h1>
+  <div class="subtitle">共 7 節 · 每節30分鐘</div>
+</div>
+
+<div class="progress-text">
+  學習進度：已完成 <span id="done-count">0</span> / 7 節
+</div>
+<div class="progress-bar">
+  <div id="progress-fill" class="progress-fill"></div>
+</div>
+
+
+    <div class="segment" id="seg1">
+      <div class="segment-header" onclick="toggleSegment('seg1')">
+        <span class="seg-num">1</span>
+        <span class="seg-title">· 明代（鄭和 + 北京城）+ 清朝開端</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg2">
+      <div class="segment-header" onclick="toggleSegment('seg2')">
+        <span class="seg-num">2</span>
+        <span class="seg-title">鄭和的生平與下西洋背景</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>背景</h4>
+
+<p>在鄭和下西洋（15世紀初）之前，中國對外交流主要靠陸上絲綢之路。明朝建立後，國力強盛，明成祖決定從海上走出去。</p>
+
+<blockquote>
+Zheng He's voyages were not about exploration — China already knew the world. They were about showing off power and building trade relationships.<br>
+鄭和航海不是為了探索——中國早就知道世界的存在。目的是展示國力和建立貿易關係。<br>
+</blockquote>
+
+<hr>
+
+<h4>三個核心原因</h4>
+
+<p>① <strong>宣揚國威</strong></p>
+
+<blockquote>
+"Let all countries know that the Ming emperor rules over all under heaven."<br>
+「讓所有國家都知道，大明皇帝統治天下。」<br>
+</blockquote>
+
+<p>② <strong>拓展海外貿易</strong></p>
+
+<p>外國來朝貢 → 明朝回賜更豐厚禮物 → 各國樂於來華貿易</p>
+
+<p>③ <strong>提升明成祖個人威望</strong></p>
+
+<p>成祖通過「靖難之役」奪位，需要向外展示合法性。</p>
+
+<hr>
+
+<h4>速記表格</h4>
+
+<table><tr><td>項目</td><td>內容</td><td>一句話記</td></tr>
+<tr><td>鄭和原名</td><td>馬和（回回人）</td><td>姓馬的回族人</td></tr>
+<tr><td>賜姓原因</td><td>鄭村壩之戰立功</td><td>打勝仗賜姓鄭</td></tr>
+<tr><td>次數</td><td>7次（1405-1433）</td><td>七下西洋</td></tr>
+<tr><td>船隊規模</td><td>寶船長138米，每次2-3萬人</td><td>百艘船、萬人隊</td></tr>
+<tr><td>最遠到達</td><td>非洲東岸</td><td>比哥倫布還遠</td></tr>
+<tr><td>「西洋」定義</td><td>南海以西至印度洋</td><td>南海向西走</td></tr>
+</table>
+<hr>
+
+<p>📖 <strong>翻教材</strong></p>
+
+<blockquote>
+`考試範圍_集中溫習.md` → 搜索「鄭和」<br>
+重點讀：鄭和身世、下西洋原因、船隊規模<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 鄭和原來姓什麼？為甚麼改姓鄭？</p>
+<p>Q: 鄭和下西洋有哪三個原因？</p>
+<p>Q: 最遠到達了甚麼地方？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg3">
+      <div class="segment-header" onclick="toggleSegment('seg3')">
+        <span class="seg-num">3</span>
+        <span class="seg-title">鄭和下西洋的影響</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>路線速記</h4>
+
+<blockquote>
+蘇州劉家港出發 → 南海 → 印度洋 → 波斯灣 → 非洲東岸<br>
+</blockquote>
+<p>></p>
+<blockquote>
+口訣：<strong>出江蘇、過南海、穿印度、到波斯、最遠非洲</strong><br>
+</blockquote>
+
+<hr>
+
+<h4>三大影響</h4>
+
+<p>① <strong>政治影響</strong></p>
+
+<blockquote>
+Zheng He's fleet demonstrated Ming power. Many countries sent tribute missions to China.<br>
+鄭和船隊展示了明朝實力，多國派使團來華朝貢。<br>
+</blockquote>
+
+<p>② <strong>經濟影響</strong></p>
+
+<blockquote>
+中國出口：絲綢、瓷器、茶葉、漆器<br>
+中國進口：香料、寶石、珍珠、乳香、犀角<br>
+</blockquote>
+<p>></p>
+<blockquote>
+一句話：<strong>中國的絲綢瓷器換外國的香料寶石</strong><br>
+</blockquote>
+
+<p>③ <strong>文化影響</strong></p>
+
+<blockquote>
+榴槤傳入中國（馬來語「durian」音譯）<br>
+「麒麟」其實是長頸鹿（索馬里語「giri」音譯）<br>
+</blockquote>
+
+<hr>
+
+<h4>對比記憶：鄭和 vs 哥倫布</h4>
+
+<table><tr><td>人物</td><td>時間</td><td>船隊規模</td><td>航程</td></tr>
+<tr><td><strong>鄭和</strong></td><td>1405-1433</td><td>寶船長138米，2-3萬人</td><td>到非洲東岸</td></tr>
+<tr><td><strong>哥倫布</strong></td><td>1492起</td><td>船長約30米，百人左右</td><td>到美洲</td></tr>
+</table>
+<blockquote>
+一句話：<strong>鄭和比哥倫布早近90年，船大十倍，人多百倍。</strong><br>
+</blockquote>
+
+<hr>
+
+<h4>下西洋停止的原因</h4>
+
+<blockquote>
+朝貢貿易「厚往薄來」— 明朝回賜比收到的貢品貴重得多，國家財政負擔太重。<br>
+後繼皇帝認為：花這麼多錢，就換來幾隻長頸鹿和香料，不划算。<br>
+</blockquote>
+
+<hr>
+
+<p>📖 <strong>翻教材</strong></p>
+
+<blockquote>
+重點讀：鄭和船隊路線、貿易貨品、停止原因<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 鄭和船隊從哪裏出發？經過哪些海域？</p>
+<p>Q: 鄭和下西洋對中國有甚麼好處？有甚麼壞處？</p>
+<p>Q: 為甚麼後來停止了？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg4">
+      <div class="segment-header" onclick="toggleSegment('seg4')">
+        <span class="seg-num">4</span>
+        <span class="seg-title">北京城的興建</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>遷都原因（三大原因）</h4>
+
+<blockquote>
+明成祖問：「為甚麼要把首都從南京搬到北京？」<br>
+</blockquote>
+
+<p>① <strong>地理形勢</strong></p>
+
+<blockquote>
+Beijing is surrounded by mountains to the north and west — natural defense against invaders.<br>
+To the south lies the North China Plain — easy to control the whole country.<br>
+北京北靠燕山、太行山——天然屏障防外敵；南控華北平原——便於統治全國。<br>
+</blockquote>
+
+<p>② <strong>大運河連接南方</strong></p>
+
+<blockquote>
+The Grand Canal brought grain and supplies from the rich south to Beijing.<br>
+大運河把南方的糧食物資源源不斷運到北京。<br>
+</blockquote>
+
+<p>③ <strong>龍興之地</strong></p>
+
+<blockquote>
+Beijing was where Emperor Yongle ruled as Prince of Yan. It was his power base.<br>
+北京是成祖做燕王時的封地，是他的勢力根據地。<br>
+</blockquote>
+
+<blockquote>
+一句話口訣：<strong>靠山防敵、運河運糧、龍興之地</strong><br>
+</blockquote>
+
+<hr>
+
+<h4>北京城四重布局</h4>
+
+<blockquote>
+由內到外：<strong>宮城 → 皇城 → 內城 → 外城</strong><br>
+</blockquote>
+<p>></p>
+<blockquote>
+想像一個靶子：最中心是皇帝（紫禁城）→ 往外是朝廷機構 → 再往外是百姓住 → 最外是城牆防禦<br>
+</blockquote>
+
+<table><tr><td>層次</td><td>名稱</td><td>用途</td><td>一句話記</td></tr>
+<tr><td>第1層</td><td>宮城（紫禁城）</td><td>皇帝起居辦公</td><td>皇帝的家</td></tr>
+<tr><td>第2層</td><td>皇城</td><td>朝廷機構、太廟</td><td>大臣上班</td></tr>
+<tr><td>第3層</td><td>內城</td><td>百姓居住、商業</td><td>老百姓住</td></tr>
+<tr><td>第4層</td><td>外城</td><td>南面加建，保護城南</td><td>南邊加個罩</td></tr>
+</table>
+<blockquote>
+北京城的形狀像「凸」字，因為外城只建了南面部分。<br>
+</blockquote>
+
+<hr>
+
+<p>📖 <strong>翻教材</strong></p>
+
+<blockquote>
+搜索「北京城」或「明成祖遷都」<br>
+重點讀：遷都三大原因、四重布局<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 明成祖為甚麼要把首都從南京搬到北京？（三點）</p>
+<p>Q: 北京城由內到外是哪四重？</p>
+<p>Q: 為甚麼北京城是「凸」字形？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg5">
+      <div class="segment-header" onclick="toggleSegment('seg5')">
+        <span class="seg-num">5</span>
+        <span class="seg-title">北京城的防禦 + 本日小結</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>防禦設計</h4>
+
+<blockquote>
+北京城不只是一個政治中心，也是一座軍事堡壘。<br>
+</blockquote>
+
+<table><tr><td>設施</td><td>作用</td><td>一句話記</td></tr>
+<tr><td>高聳磚牆</td><td>內城城牆特別高厚</td><td>牆高難爬</td></tr>
+<tr><td>箭樓</td><td>城牆上可射箭</td><td>站高射箭</td></tr>
+<tr><td>角樓</td><td>城牆轉角加強防禦</td><td>轉角有兵</td></tr>
+<tr><td>瓮城</td><td>城門外加建小城</td><td>進來關門打狗</td></tr>
+<tr><td>烽火台</td><td>傳遞軍情</td><td>點火報信</td></tr>
+</table>
+<blockquote>
+<strong>于謙守北京</strong>：明英宗時，蒙古瓦剌進攻北京，兵部尚書于謙堅守京城，用炮火擊退瓦剌。<br>
+</blockquote>
+
+<hr>
+
+<h4>本日快速回顧（10分鐘）</h4>
+
+<table><tr><td>主題</td><td>關鍵記憶</td></tr>
+<tr><td>鄭和七下西洋</td><td>1405-1433，非洲東岸，2-3萬人</td></tr>
+<tr><td>下西洋影響</td><td>宣國威、促貿易、傳文化</td></tr>
+<tr><td>北京城</td><td>四重布局：宮→皇→內→外</td></tr>
+<tr><td>遷都原因</td><td>靠山、運河、龍興之地</td></tr>
+</table>
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 甚麼是「瓮城」？有甚麼作用？</p>
+<p>Q: 于謙守北京是怎麼一回事？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg6">
+      <div class="segment-header" onclick="toggleSegment('seg6')">
+        <span class="seg-num">6</span>
+        <span class="seg-title">滿清入關</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>背景</h4>
+
+<blockquote>
+The Manchus started as a small tribe in the northeast. In just decades, they conquered all of China.<br>
+女真本來只是東北的一個小部落，短短幾十年就征服了整個中國。<br>
+</blockquote>
+
+<h4>三步曲：從部落到帝國</h4>
+
+<table><tr><td>階段</td><td>人物</td><td>事件</td><td>一句話記</td></tr>
+<tr><td>①統一女真</td><td><strong>努爾哈赤</strong></td><td>1616年建「後金」，創八旗制度</td><td>建州女真站起來</td></tr>
+<tr><td>②改國號</td><td><strong>皇太極</strong></td><td>改族名「滿洲」→ 改國號「清」（1636）</td><td>女真變滿洲</td></tr>
+<tr><td>③入關</td><td><strong>多爾袞</strong> + <strong>吳三桂</strong></td><td>1644年吳三桂引清兵入山海關</td><td>三桂開大門</td></tr>
+</table>
+<blockquote>
+<strong>八旗制度</strong>：兵民合一，平時耕種打獵，戰時就是士兵。正黃、正白、正紅、正藍……共八旗。<br>
+</blockquote>
+
+<hr>
+
+<p>📖 <strong>翻教材</strong></p>
+
+<blockquote>
+搜索「努爾哈赤」「八旗」「吳三桂」<br>
+重點讀：入關三部曲<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 努爾哈赤和皇太極分別做了甚麼？</p>
+<p>Q: 清兵是怎麼入關的？</p>
+<p>Q: 八旗制度是甚麼？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="segment" id="seg7">
+      <div class="segment-header" onclick="toggleSegment('seg7')">
+        <span class="seg-num">7</span>
+        <span class="seg-title">康雍乾盛世</span>
+        <span class="seg-toggle">▶</span>
+      </div>
+      <div class="segment-body" style="display:none">
+        
+<h4>三大皇帝速記表格</h4>
+
+<table><tr><td>皇帝</td><td>在位</td><td>主要功績</td><td>一句話記</td></tr>
+<tr><td><strong>康熙</strong></td><td>1662-1722</td><td>擒鰲拜、平三藩、收台灣</td><td>少年皇帝立大功</td></tr>
+<tr><td><strong>雍正</strong></td><td>1723-1735</td><td>攤丁入地、懲治貪官</td><td>改革稅制治貪官</td></tr>
+<tr><td><strong>乾隆</strong></td><td>1736-1795</td><td>征回部（新疆）、修《四庫全書》</td><td>開疆拓土編大書</td></tr>
+</table>
+<blockquote>
+<strong>「康雍乾盛世」</strong>：1662-1795，共134年，清朝全盛時期，版圖超越漢唐。<br>
+</blockquote>
+
+<h4>重要政策「攤丁入地」</h4>
+
+<blockquote>
+以前：每個人要交人頭稅（丁稅），沒田的窮人也得交。<br>
+雍正改革：把丁稅併入田稅，有田的人多交，沒田的人不用交。<br>
+</blockquote>
+<p>></p>
+<blockquote>
+一句話：<strong>有田出錢，無田免稅，公平！</strong><br>
+</blockquote>
+
+<hr>
+
+<p>📖 <strong>翻教材</strong></p>
+
+<blockquote>
+搜索「康雍乾」「攤丁入地」<br>
+重點讀：三位皇帝主要政績<br>
+</blockquote>
+
+<hr>
+
+<p>✅ <strong>快速自檢</strong></p>
+
+<p>Q: 康熙、雍正、乾隆各有甚麼主要貢獻？</p>
+<p>Q: 「攤丁入地」是甚麼政策？有甚麼好處？</p>
+<p>Q: 康雍乾盛世持續了多少年？</p>
+
+<hr>
+        
+        <div class="seg-done">
+          <label>
+            <input type="checkbox" onchange="updateProgress()" class="done-cb">
+            ✓ 已完成本節
+          </label>
+        </div>
+      </div>
+    </div>
+
+<button class="reset-btn" onclick="resetAll()">↻ 重置所有進度</button>
+
+</div>
+
+<script>
+function toggleSegment(id) {
+  var seg = document.getElementById(id);
+  var body = seg.querySelector('.segment-body');
+  var toggle = seg.querySelector('.seg-toggle');
+  if (body.style.display === 'none') {
+    body.style.display = 'block';
+    seg.classList.add('open');
+    toggle.textContent = '▼';
+  } else {
+    body.style.display = 'none';
+    seg.classList.remove('open');
+    toggle.textContent = '▶';
+  }
+}
+
+function toggleQuiz(id) {
+  var div = document.getElementById(id);
+  var arrow = div.previousElementSibling.querySelector('.toggle-arrow');
+  if (div.style.display === 'none') {
+    div.style.display = 'block';
+    if (arrow) arrow.textContent = '▼';
+  } else {
+    div.style.display = 'none';
+    if (arrow) arrow.textContent = '▶';
+  }
+}
+
+function updateProgress() {
+  var cbs = document.querySelectorAll('.done-cb:checked');
+  var total = document.querySelectorAll('.done-cb').length;
+  var count = cbs.length;
+  document.getElementById('done-count').textContent = count;
+  var pct = total > 0 ? (count / total * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  
+  // Save to localStorage
+  var ids = [];
+  cbs.forEach(function(cb) {
+    var seg = cb.closest('.segment');
+    if (seg) ids.push(seg.id);
+  });
+  try {
+    localStorage.setItem('history_day1_done', JSON.stringify(ids));
+    localStorage.setItem('history_day1_pct', pct);
+  } catch(e) {}
+}
+
+function resetAll() {
+  if (confirm('確定要重置所有進度嗎？')) {
+    document.querySelectorAll('.done-cb').forEach(function(cb) { cb.checked = false; });
+    updateProgress();
+    try { localStorage.removeItem('history_day1_done'); } catch(e) {}
+  }
+}
+
+// Restore saved state on load
+window.addEventListener('DOMContentLoaded', function() {
+  try {
+    var saved = JSON.parse(localStorage.getItem('history_day1_done')) || [];
+    saved.forEach(function(id) {
+      var seg = document.getElementById(id);
+      if (seg) {
+        var cb = seg.querySelector('.done-cb');
+        if (cb) cb.checked = true;
+      }
+    });
+    updateProgress();
+  } catch(e) {}
+});
+</script>
+
+</body>
+</html>
