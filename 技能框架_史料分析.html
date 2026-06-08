@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>史料分析框架 · 中二中國歷史</title>
+<style>
+body {
+  font-family: -apple-system, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  background: #f5f0eb;
+  color: #2c2c2c;
+  line-height: 1.9;
+  font-size: 16px;
+  padding: 20px;
+  margin: 0;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px 48px;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 26px; color: #5a2d0c; border-bottom: 2px solid #f0e8dc; padding-bottom: 8px; }
+h2 { font-size: 20px; color: #5a2d0c; margin-top: 28px; }
+h3 { font-size: 17px; color: #8b4513; margin-top: 22px; }
+h4 { font-size: 15px; color: #8b4513; margin-top: 16px; }
+a { color: #8b4513; text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin: 10px 0; }
+strong { color: #333; }
+blockquote {
+  border-left: 4px solid #d4a574;
+  margin: 14px 0;
+  padding: 10px 16px;
+  background: #faf5ef;
+  border-radius: 4px;
+  color: #555;
+}
+code {
+  background: #f0e8dc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+pre {
+  background: #2c2c2c;
+  color: #e0e0e0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+pre code { background: transparent; padding: 0; color: inherit; }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 14px 0;
+  font-size: 14px;
+}
+th, td {
+  border: 1px solid #e0d5c8;
+  padding: 8px 12px;
+  text-align: left;
+}
+th { background: #f5f0eb; font-weight: 600; color: #5a2d0c; }
+tr:nth-child(even) { background: #faf5ef; }
+ul, ol { padding-left: 24px; margin: 10px 0; }
+li { margin: 4px 0; }
+hr { border: none; border-top: 1px solid #e0d5c8; margin: 24px 0; }
+.nav-bar {
+  text-align: center; padding: 10px 0 20px;
+  font-size: 14px; color: #888;
+}
+.nav-bar a { margin: 0 8px; }
+.back-link { display: block; margin-bottom: 16px; }
+.back-link a { font-size: 14px; color: #8b4513; }
+@media (max-width: 600px) {
+  .container { padding: 16px; }
+  table { font-size: 13px; }
+  th, td { padding: 4px 6px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="back-link"><a href="index.html">← 返回首頁</a></div>
+<h1>史料分析框架</h1>
+<blockquote>
+<p>考試中，史料分析題通常佔 15-40% 的分數。這類題目不是考你「記不記得」，而是考你「會不會用史料作為證據來回答問題」。</p>
+</blockquote>
+<hr />
+<h2>第一步：辨別一手史料 vs 二手史料</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>一手史料（Primary Source）</th>
+<th>二手史料（Secondary Source）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>定義</strong></td>
+<td>事件發生當時產生的記錄</td>
+<td>後人根據一手史料寫成的著作</td>
+</tr>
+<tr>
+<td><strong>例子</strong></td>
+<td>奏摺、詔書、信件、日記、當時的畫作</td>
+<td>教科書、學者論文、歷史著作</td>
+</tr>
+<tr>
+<td><strong>優點</strong></td>
+<td>最接近事實，可信度高</td>
+<td>有分析和總結，易於理解</td>
+</tr>
+<tr>
+<td><strong>局限</strong></td>
+<td>可能有偏見、遺漏</td>
+<td>可能受作者觀點影響</td>
+</tr>
+</tbody>
+</table>
+<h3>中二歷史常見一手史料類型</h3>
+<table>
+<thead>
+<tr>
+<th>史料類型</th>
+<th>示例（本課）</th>
+<th>分析重點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>奏摺/奏疏</td>
+<td>大臣上奏反對下西洋</td>
+<td>作者的立場和目的</td>
+</tr>
+<tr>
+<td>詔書</td>
+<td>明成祖詔書</td>
+<td>統治者的官方說法</td>
+</tr>
+<tr>
+<td>出使記錄</td>
+<td>馬歡《瀛涯勝覽》</td>
+<td>親歷者的觀察</td>
+</tr>
+<tr>
+<td>條約原文</td>
+<td>《南京條約》條款</td>
+<td>哪一方獲利</td>
+</tr>
+<tr>
+<td>統計數據</td>
+<td>賠款金額、人口</td>
+<td>數據說明了甚麼趨勢</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第二步：史料分析四問法（S-T-A-R）</h2>
+<p>每次看到一段史料，按以下順序問自己四個問題：</p>
+<h3>S — Source（來源）</h3>
+<ul>
+<li>這份史料是誰寫的/製作的？</li>
+<li>是甚麼時候寫的？</li>
+<li>是官方文件還是個人記錄？</li>
+</ul>
+<h3>T — Tone（立場/語氣）</h3>
+<ul>
+<li>作者支持誰？反對誰？</li>
+<li>用了哪些帶有感情色彩的詞？</li>
+<li>作者的目的是甚麼？</li>
+<li>記錄事實？說服別人？讚揚？批評？</li>
+</ul>
+<h3>A — Argument（論點）</h3>
+<ul>
+<li>這段史料的核心訊息是甚麼？</li>
+<li>它想證明甚麼？</li>
+<li>它有沒有忽略某些信息？</li>
+</ul>
+<h3>R — Reliability（可信度）</h3>
+<ul>
+<li>作者的立場會影響他的記載嗎？</li>
+<li>有沒有其他史料可以交叉印證？</li>
+<li>一手史料 ≠ 絕對可信（作者也有偏見）</li>
+</ul>
+<blockquote>
+<p><strong>口訣：看來源、看立場、看觀點、看可信</strong></p>
+</blockquote>
+<hr />
+<h2>第三步：用史料回答問題</h2>
+<p>考試常問的三種史料題：</p>
+<table>
+<thead>
+<tr>
+<th>題型</th>
+<th>問法</th>
+<th>答題要點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 直接提取</strong></td>
+<td>「根據資料一，指出……」</td>
+<td>直接從資料抄錄關鍵詞</td>
+</tr>
+<tr>
+<td><strong>② 推論</strong></td>
+<td>「根據資料一並就你所知，解釋……」</td>
+<td>資料 + 自己知識結合</td>
+</tr>
+<tr>
+<td><strong>③ 評價</strong></td>
+<td>「你是否同意資料二的觀點？試解釋。」</td>
+<td>先表明立場，再用史料論證</td>
+</tr>
+</tbody>
+</table>
+<h3>答題範例</h3>
+<blockquote>
+<p><strong>資料</strong>：馬歡《瀛涯勝覽》記載：「鄭和船隊帶去絲綢、瓷器，換回香料、寶石。各國國王熱烈歡迎，爭相派遣使臣來華朝貢。」</p>
+<p><strong>問題</strong>：根據以上資料，分析鄭和下西洋對中外關係的影響。</p>
+</blockquote>
+<p><strong>答題示範</strong>：
+| 分析步驟 | 作答內容 |
+|---------|---------|
+| ① 史料類型 | 一手史料——馬歡是隨行人員，親眼所見 |
+| ② 提取訊息 | 貿易往來（絲綢瓷器換香料寶石）、外交成果（各國遣使朝貢） |
+| ③ 推論 | 促進了中外貿易和文化交流，增強了明朝的國際影響力 |
+| ④ 限制定位 | 馬歡是明朝官員，記載可能傾向正面，忽略了朝貢貿易的財政負擔 |</p>
+<hr />
+<h2>第四步：實戰練習題</h2>
+<h3>練習一：史料辨識</h3>
+<p>判斷以下各項屬於一手史料還是二手史料：</p>
+<ol>
+<li>《南京條約》原文</li>
+<li>教課書對鴉片戰爭的描述</li>
+<li>林則徐寫給道光皇帝的奏摺</li>
+<li>中學歷史網站的介紹文章</li>
+<li>《明史·鄭和傳》</li>
+</ol>
+<blockquote>
+<p><strong>答案</strong>：①一手 ②二手 ③一手 ④二手 ⑤二手（明史是清朝編寫的）</p>
+</blockquote>
+<h3>練習二：史料分析（S-T-A-R）</h3>
+<blockquote>
+<p><strong>資料</strong>：嚴從簡《殊域周咨錄》記載（明朝官員）：「（鄭和）費了數千萬錢糧，數萬計的性命……雖然帶了不少珍異寶物回國，但又有甚麼益處呢？」</p>
+</blockquote>
+<p>用 S-T-A-R 框架分析這份史料：</p>
+<table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>你的分析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S（來源）</strong></td>
+<td>明朝官員嚴從簡，寫於明朝中後期</td>
+</tr>
+<tr>
+<td><strong>T（立場）</strong></td>
+<td>反對下西洋——強調花費巨大、傷亡慘重</td>
+</tr>
+<tr>
+<td><strong>A（論點）</strong></td>
+<td>鄭和下西洋得不償失，浪費國力</td>
+</tr>
+<tr>
+<td><strong>R（可信度）</strong></td>
+<td>他是明朝人，對當時狀況有了解，但立場鮮明（反對派），可能誇大了負面影響。需對比馬歡等親歷者的正面記載</td>
+</tr>
+</tbody>
+</table>
+<h3>練習三：史料回答</h3>
+<blockquote>
+<p><strong>資料</strong>：1860年《北京條約》條款：「將粤東九龍司地方一區，歸英國屬香港界內。」</p>
+<p><strong>問題</strong>：根據以上資料，指出第二次鴉片戰爭後英國在中國獲得了甚麼利益？</p>
+</blockquote>
+<p><strong>參考答案</strong>：
+- 直接提取：英國取得了九龍半島南部（九龍司）
+- 推論：英國在中國的佔地面積擴大，由香港島擴展至九龍半島
+- 背景連結：結合 1842 年《南京條約》割讓香港島，英國在華勢力範圍持續擴大</p>
+<div class="nav-bar">
+<a href="index.html">🏠 返回首頁</a>
+</div>
+</div>
+</body>
+</html>

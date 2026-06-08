@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>對比分析框架 · 中二中國歷史</title>
+<style>
+body {
+  font-family: -apple-system, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  background: #f5f0eb;
+  color: #2c2c2c;
+  line-height: 1.9;
+  font-size: 16px;
+  padding: 20px;
+  margin: 0;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px 48px;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+h1 { font-size: 26px; color: #5a2d0c; border-bottom: 2px solid #f0e8dc; padding-bottom: 8px; }
+h2 { font-size: 20px; color: #5a2d0c; margin-top: 28px; }
+h3 { font-size: 17px; color: #8b4513; margin-top: 22px; }
+h4 { font-size: 15px; color: #8b4513; margin-top: 16px; }
+a { color: #8b4513; text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin: 10px 0; }
+strong { color: #333; }
+blockquote {
+  border-left: 4px solid #d4a574;
+  margin: 14px 0;
+  padding: 10px 16px;
+  background: #faf5ef;
+  border-radius: 4px;
+  color: #555;
+}
+code {
+  background: #f0e8dc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+pre {
+  background: #2c2c2c;
+  color: #e0e0e0;
+  padding: 14px 18px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+pre code { background: transparent; padding: 0; color: inherit; }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 14px 0;
+  font-size: 14px;
+}
+th, td {
+  border: 1px solid #e0d5c8;
+  padding: 8px 12px;
+  text-align: left;
+}
+th { background: #f5f0eb; font-weight: 600; color: #5a2d0c; }
+tr:nth-child(even) { background: #faf5ef; }
+ul, ol { padding-left: 24px; margin: 10px 0; }
+li { margin: 4px 0; }
+hr { border: none; border-top: 1px solid #e0d5c8; margin: 24px 0; }
+.nav-bar {
+  text-align: center; padding: 10px 0 20px;
+  font-size: 14px; color: #888;
+}
+.nav-bar a { margin: 0 8px; }
+.back-link { display: block; margin-bottom: 16px; }
+.back-link a { font-size: 14px; color: #8b4513; }
+@media (max-width: 600px) {
+  .container { padding: 16px; }
+  table { font-size: 13px; }
+  th, td { padding: 4px 6px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="back-link"><a href="index.html">← 返回首頁</a></div>
+<h1>對比分析框架</h1>
+<blockquote>
+<p>歷史考試常問「比較 X 和 Y 的異同」。比的不只是「知道」，而是 <strong>能否在同一個維度上做對比</strong>。</p>
+</blockquote>
+<hr />
+<h2>對比分析三步法</h2>
+<h3>Step 1 — 選取維度（Dimensions）</h3>
+<p>比較的第一步不是「找不同」，而是 <strong>確定從哪些方面去比較</strong>。</p>
+<p>常用的比較維度：</p>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>適合比較的對象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>時間/年代</td>
+<td>任何歷史事件</td>
+</tr>
+<tr>
+<td>動機/目的</td>
+<td>人物、政策、運動</td>
+</tr>
+<tr>
+<td>規模/範圍</td>
+<td>事件、戰爭</td>
+</tr>
+<tr>
+<td>手段/方法</td>
+<td>改革運動、治理方式</td>
+</tr>
+<tr>
+<td>結果/影響</td>
+<td>政策、條約、戰爭</td>
+</tr>
+<tr>
+<td>深度/程度</td>
+<td>改革、變法</td>
+</tr>
+<tr>
+<td>性質</td>
+<td>航海、戰爭、貿易</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 2 — 填內容（Data）</h3>
+<p>在選定的維度下，分別列出 X 和 Y 的相應內容。</p>
+<h3>Step 3 — 下結論（Conclusion）</h3>
+<p>最後總結一句話，指出 <strong>最關鍵的差異</strong> 或 <strong>根本的相同點</strong>。</p>
+<hr />
+<h2>通用對比模板</h2>
+<div class="codehilite"><pre><span></span><code>┌──────────────────────┬──────────────────┬──────────────────┬──────────────────┐
+│       比較維度        │      對象 A       │      對象 B       │    異/同？      │
+├──────────────────────┼──────────────────┼──────────────────┼──────────────────┤
+│ ① 時間               │                  │                  │                  │
+│ ② 動機/目的           │                  │                  │                  │
+│ ③ 規模/範圍           │                  │                  │                  │
+│ ④ 方法/手段           │                  │                  │                  │
+│ ⑤ 結果/影響           │                  │                  │                  │
+│ ⑥ 深度/程度           │                  │                  │                  │
+│ ⑦ 性質               │                  │                  │                  │
+└──────────────────────┴──────────────────┴──────────────────┴──────────────────┘
+</code></pre></div>
+
+<hr />
+<h2>中二歷史必考對比表</h2>
+<h3>對比一：鄭和 vs 哥倫布</h3>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>鄭和</th>
+<th>哥倫布</th>
+<th>異/同</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>時間</td>
+<td>1405-1433</td>
+<td>1492 起</td>
+<td>鄭和早近 90 年</td>
+</tr>
+<tr>
+<td>規模</td>
+<td>寶船長138米，2-3萬人</td>
+<td>船∼30米，約百人</td>
+<td>鄭和遠大於哥倫布</td>
+</tr>
+<tr>
+<td>航程</td>
+<td>到非洲東岸</td>
+<td>到美洲</td>
+<td>方向不同</td>
+</tr>
+<tr>
+<td>動機</td>
+<td>宣揚國威、朝貢貿易</td>
+<td>殖民擴張、掠奪資源</td>
+<td>性質完全不同</td>
+</tr>
+<tr>
+<td>結果</td>
+<td>後被停止</td>
+<td>歐洲各國爭相跟進</td>
+<td>命運相反</td>
+</tr>
+</tbody>
+</table>
+<p><strong>一句話結論</strong>：鄭和航海是「政治秀」，哥倫布航海是「殖民擴張」——性質決定了命運。</p>
+<hr />
+<h3>對比二：懷柔政策 vs 高壓政策（清初對漢人）</h3>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>懷柔（胡蘿蔔）</th>
+<th>高壓（大棒）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的</td>
+<td>爭取漢人支持</td>
+<td>壓制反抗</td>
+</tr>
+<tr>
+<td>措施</td>
+<td>禮葬明思宗、開科取士</td>
+<td>剃髮令、圈地、滿漢不通婚</td>
+</tr>
+<tr>
+<td>效果</td>
+<td>吸引讀書人合作</td>
+<td>激起反抗但最終鎮壓</td>
+</tr>
+<tr>
+<td>適用對象</td>
+<td>文人、官僚</td>
+<td>普通百姓</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>對比三：洋務運動 vs 戊戌維新 vs 清末新政</h3>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>洋務運動</th>
+<th>戊戌維新</th>
+<th>清末新政</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>時間</td>
+<td>1861-1895</td>
+<td>1898（103天）</td>
+<td>1901-1911</td>
+</tr>
+<tr>
+<td>觸發</td>
+<td>鴉片戰爭+太平天國</td>
+<td>甲午戰敗</td>
+<td>八國聯軍</td>
+</tr>
+<tr>
+<td>態度</td>
+<td>主動學習</td>
+<td>主動求變</td>
+<td>被迫改革</td>
+</tr>
+<tr>
+<td>範圍</td>
+<td>局部（軍事、工業）</td>
+<td>全面（含政治）</td>
+<td>全面（含預備立憲）</td>
+</tr>
+<tr>
+<td>手段</td>
+<td>中體西用</td>
+<td>全變速變</td>
+<td>妥協緩慢</td>
+</tr>
+<tr>
+<td>阻礙</td>
+<td>守舊勢力</td>
+<td>慈禧發動政變</td>
+<td>革命派取代</td>
+</tr>
+<tr>
+<td>結果</td>
+<td>甲午戰敗證明失敗</td>
+<td>百日維新被推翻</td>
+<td>加速革命→清朝亡</td>
+</tr>
+</tbody>
+</table>
+<p><strong>一句話結論</strong>：從洋務到維新再到新政，改革的深度逐步加深，但速度永遠跟不上革命的腳步。</p>
+<hr />
+<h3>對比四：兩個不平等條約</h3>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>《南京條約》(1842)</th>
+<th>《馬關條約》(1895)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>戰爭</td>
+<td>第一次鴉片戰爭</td>
+<td>甲午戰爭</td>
+</tr>
+<tr>
+<td>對手</td>
+<td>英國</td>
+<td>日本</td>
+</tr>
+<tr>
+<td>賠款</td>
+<td>2100萬兩</td>
+<td>二億兩</td>
+</tr>
+<tr>
+<td>割地</td>
+<td>香港島</td>
+<td>台灣、澎湖</td>
+</tr>
+<tr>
+<td>通商</td>
+<td>五口通商</td>
+<td>增開更多口岸</td>
+</tr>
+<tr>
+<td>意義</td>
+<td>第一個不平等條約</td>
+<td>標誌洋務運動失敗</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>如何用對比框架答題</h2>
+<blockquote>
+<p><strong>問題</strong>：比較洋務運動和戊戌維新，你認為哪一個更有可能成功？試解釋。</p>
+</blockquote>
+<p><strong>範例答題結構</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>答題部分</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 選維度</td>
+<td>從動機、範圍、手段、結果四個維度比較</td>
+</tr>
+<tr>
+<td>② 列內容</td>
+<td>（見上方對比表）</td>
+</tr>
+<tr>
+<td>③ 分析</td>
+<td>洋務只學技術不改制度 → 甲午戰敗證明失敗</td>
+</tr>
+<tr>
+<td>④ 分析</td>
+<td>維新全面改革 → 但太快太急 → 守舊勢力反撲</td>
+</tr>
+<tr>
+<td>⑤ 結論</td>
+<td>兩者各有侷限：洋務太淺、維新太急。成功需要「深度合適 + 時機恰當」</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>實戰練習</h2>
+<h3>練習一：填充對比表</h3>
+<p>比較「第一次鴉片戰爭」和「第二次鴉片戰爭」：</p>
+<table>
+<thead>
+<tr>
+<th>維度</th>
+<th>第一次鴉片戰爭</th>
+<th>第二次鴉片戰爭</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>時間</td>
+<td>1840-1842</td>
+<td></td>
+</tr>
+<tr>
+<td>對手</td>
+<td></td>
+<td>英法聯軍</td>
+</tr>
+<tr>
+<td>主要條約</td>
+<td></td>
+<td>《天津條約》《北京條約》</td>
+</tr>
+<tr>
+<td>割地</td>
+<td></td>
+<td>九龍半島南部</td>
+</tr>
+<tr>
+<td>特殊事件</td>
+<td></td>
+<td>火燒圓明園</td>
+</tr>
+</tbody>
+</table>
+<h3>練習二：自主設計對比</h3>
+<p><strong>問題</strong>：比較康雍乾三位皇帝的施政特點。</p>
+<p><strong>提示維度</strong>：任期、主要貢獻、施政風格、歷史評價</p>
+<h3>練習三：開放式對比</h3>
+<p><strong>問題</strong>：有人說「鄭和下西洋和哥倫布發現新大陸都是人類航海史上的偉大壯舉」，你同意嗎？試從動機和影響兩方面比較。</p>
+<blockquote>
+<p><strong>提示</strong>：同意不同意都可以，關鍵是你在同一維度上做比較，並給出證據。</p>
+</blockquote>
+<div class="nav-bar">
+<a href="index.html">🏠 返回首頁</a>
+</div>
+</div>
+</body>
+</html>

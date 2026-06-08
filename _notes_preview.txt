@@ -1,0 +1,10 @@
+   - 匀速运动 vs 非匀速运动 (5 rows)
+3. **Dimensions reference table** with .dimensions-table styling
+4. **答题结构 table** for the exam strategy section
+5. **Expandable answer sections** (3 exercises) with .q-item onclick toggle
+6. **结论 blocks** with .conclusion purple background
+7. **Star ratings and tags** for difficulty/importance
+8. **Inline CSS** <style> block with all required base styles plus extras
+
+
+---
