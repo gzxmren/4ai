@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>清朝深度溫習 · 背景分析 · 問答 · 論點描述</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #f5f0eb 0%, #e8ddd0 100%);
+    color: #2c2c2c; min-height: 100vh; padding: 20px;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+
+  /* 頂部 */
+  .top-bar {
+    font-size: 12px; color: #8b4513; margin-bottom: 4px;
+    display: flex; justify-content: space-between;
+  }
+  .top-bar a { color: #8b4513; text-decoration: none; }
+  .top-bar a:hover { text-decoration: underline; }
+
+  h1 { font-size: 24px; color: #5a2d0c; text-align: center; margin-bottom: 2px; }
+  .subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 8px; }
+
+  .method-banner {
+    background: #f3e5f5; border-radius: 10px; padding: 10px 14px;
+    font-size: 13px; color: #5a2d0c; margin-bottom: 20px; line-height: 1.6;
+  }
+  .method-banner strong { color: #7b1fa2; }
+
+  /* 章節標題 */
+  .section {
+    background: #fff; border-radius: 12px; margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden;
+  }
+  .section-header {
+    padding: 14px 18px; font-weight: 700; font-size: 16px;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    user-select: none;
+  }
+  .section-header:hover { opacity: 0.85; }
+  .section-header .arrow { font-size: 14px; transition: transform 0.2s; color: #999; }
+  .section.open .section-header .arrow { transform: rotate(90deg); }
+  .section-body { display: none; padding: 0 18px 18px 18px; }
+  .section.open .section-body { display: block; }
+
+  .s1 .section-header { background: #5a2d0c; color: #fff; }
+  .s2 .section-header { background: #2e7d32; color: #fff; }
+  .s3 .section-header { background: #1565c0; color: #fff; }
+  .s4 .section-header { background: #c62828; color: #fff; }
+  .s5 .section-header { background: #7b1fa2; color: #fff; }
+  .s6 .section-header { background: #e65100; color: #fff; }
+  .s7 .section-header { background: #2c2c2c; color: #fff; }
+  .s8 .section-header { background: #b71c1c; color: #fff; }
+  .s9 .section-header { background: #0d47a1; color: #fff; }
+
+  /* 內容卡片 */
+  .subsection { margin-top: 14px; }
+  .subsection h3 {
+    font-size: 14px; color: #5a2d0c; margin-bottom: 6px;
+    padding-bottom: 4px; border-bottom: 2px solid #f0e8e0;
+  }
+  .subsection h4 { font-size: 13px; color: #444; margin: 10px 0 4px; }
+
+  .timeline { display: flex; flex-direction: column; gap: 3px; }
+  .tl-row {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 4px 0; border-bottom: 1px dashed #f0e8e0;
+  }
+  .tl-year { font-weight: 700; color: #8b4513; font-size: 13px; min-width: 80px; }
+  .tl-event { font-size: 13px; color: #444; }
+  .tl-tag {
+    font-size: 10px; padding: 1px 6px; border-radius: 6px;
+    margin-left: auto; white-space: nowrap;
+  }
+  .tl-tag.rise { background: #e8f5e9; color: #2e7d32; }
+  .tl-tag.decline { background: #fce4ec; color: #c62828; }
+  .tl-tag.reform { background: #e3f2fd; color: #1565c0; }
+
+  /* 因果鏈 */
+  .causal-chain {
+    background: #fafafa; border: 1px solid #e0d6cc; border-radius: 8px;
+    padding: 10px 14px; margin: 8px 0;
+    font-family: "Courier New", monospace; font-size: 13px; line-height: 1.8;
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  /* 題目框 */
+  .q-box {
+    background: #fff8e1; border-left: 4px solid #f57f17;
+    padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 8px 0;
+  }
+  .q-box .q-label { font-size: 11px; font-weight: 700; color: #e65100; margin-bottom: 2px; }
+  .q-box .q-text { font-size: 14px; font-weight: 600; color: #2c2c2c; }
+
+  /* 答案示範 */
+  .answer-demo {
+    background: #f3f9f3; border-left: 4px solid #2e7d32;
+    padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 8px 0;
+    font-size: 13px; line-height: 1.7; color: #333;
+  }
+  .answer-demo .a-label {
+    font-size: 11px; font-weight: 700; color: #2e7d32; margin-bottom: 2px;
+  }
+  .answer-demo .highlight { background: #fff3cd; padding: 0 2px; }
+  .answer-demo .method-ref {
+    display: inline-block; font-size: 10px; background: #e8f5e9;
+    padding: 1px 8px; border-radius: 8px; color: #2e7d32; margin-right: 4px;
+  }
+
+  /* 對比表 */
+  .compare-table {
+    width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0;
+  }
+  .compare-table th {
+    background: #5a2d0c; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600;
+  }
+  .compare-table td {
+    padding: 7px 10px; border-bottom: 1px solid #e8e0d8; vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: #faf8f5; }
+  .compare-table .dim { font-weight: 600; color: #8b4513; white-space: nowrap; }
+
+  /* 框架速查卡 */
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
+  .fcard {
+    background: #faf8f5; border: 1px solid #e0d6cc; border-radius: 8px; padding: 10px;
+  }
+  .fcard h4 { font-size: 13px; color: #5a2d0c; margin-bottom: 4px; }
+  .fcard p { font-size: 12px; color: #555; line-height: 1.6; }
+  .fcard code {
+    background: #e8e0d8; font-size: 11px; padding: 1px 5px; border-radius: 3px;
+  }
+
+  /* 史料練習 */
+  .source-box {
+    background: #f5f0eb; border: 1px solid #d4c8b8; border-radius: 8px;
+    padding: 10px 14px; margin: 8px 0; font-size: 13px; line-height: 1.7;
+  }
+  .source-box .src-label { font-size: 11px; font-weight: 700; color: #8b4513; margin-bottom: 2px; }
+  .star { display: flex; gap: 4px; margin: 6px 0; }
+  .star .on { color: #f57f17; }
+  .star .off { color: #ddd; }
+
+  .footer {
+    text-align: center; margin-top: 30px; font-size: 12px; color: #bbb; padding-bottom: 30px;
+  }
+  .footer a { color: #8b4513; text-decoration: none; }
+
+  /* 響應式 */
+  @media (max-width: 500px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .tl-year { min-width: 60px; font-size: 12px; }
+    .causal-chain { font-size: 12px; }
+  }
+
+  /* 進度標籤 */
+  .progress-bar {
+    display: flex; gap: 4px; justify-content: center; margin: 10px 0 16px; flex-wrap: wrap;
+  }
+  .p-step {
+    font-size: 11px; padding: 4px 10px; border-radius: 14px; font-weight: 500;
+  }
+  .p-step.active { background: #5a2d0c; color: #fff; }
+  .p-step.done { background: #e8f5e9; color: #2e7d32; }
+  .p-step.todo { background: #f0f0f0; color: #999; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- 導航 -->
+<div class="top-bar">
+  <a href="index.html">← 回到首頁</a>
+  <span>清朝深度溫習</span>
+</div>
+
+<h1>🏯 清朝深度溫習</h1>
+<p class="subtitle">背景分析題 · 問答题 · 論點描述題 專項訓練</p>
+
+<!-- 方法提示 -->
+<div class="method-banner">
+  <strong>🧠 本複習使用項目已建立的 4 大技能框架</strong><br>
+  🔍 史料分析 S-T-A-R · 🔗 因果鏈三步法 · 📊 對比分析三步法 · ⚖️ 評價分析 P-E-B-C<br>
+  每個高階題型旁都會標註對應框架，可隨時跳轉回完整框架文件查閱。
+</div>
+
+<!-- 進度條 -->
+<div class="progress-bar">
+  <span class="p-step done">① 時間線</span>
+  <span class="p-step done">② 因果鏈</span>
+  <span class="p-step done">③ 背景分析</span>
+  <span class="p-step done">④ 比較題</span>
+  <span class="p-step done">⑤ 評價題</span>
+  <span class="p-step done">⑥ 史料分析</span>
+  <span class="p-step done">⑦ 答題框架</span>
+  <span class="p-step done">⑧ 戰爭×條約</span>
+  <span class="p-step done">⑨ 改革差距</span>
+</div>
+
+<!-- ====== 第1節：時間線 ====== -->
+<div class="section s1 open" id="s1">
+  <div class="section-header" onclick="toggle(this.parentElement)">
+    <span>⏱ 清朝時間線速覽（recall）</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:13px;color:#666;margin-bottom:10px;">掌握基本時序是背景分析的基礎。記住關鍵年份，才能在答題時引用史實。</p>
+
+    <div class="timeline">
+      <div class="tl-row">
+        <span class="tl-year">1616</span>
+        <span class="tl-event">努爾哈赤建後金</span>
+        <span class="tl-tag rise">崛起</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1636</span>
+        <span class="tl-event">皇太極改國號為「清」</span>
+        <span class="tl-tag rise">崛起</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1644</span>
+        <span class="tl-event">李自成陷北京 → 吳三桂引清兵入關 → 清朝建立</span>
+        <span class="tl-tag rise">入關</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1662-1795</span>
+        <span class="tl-event"><strong>康雍乾盛世</strong>（134 年全盛期，版圖超越漢唐）</span>
+        <span class="tl-tag rise">全盛</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1726</span>
+        <span class="tl-event">雍正推行「攤丁入地」</span>
+        <span class="tl-tag rise">改革</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1796-1804</span>
+        <span class="tl-event">白蓮教起事（二億兩軍費，暴露國力衰退）</span>
+        <span class="tl-tag decline">中衰</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1840-1842</span>
+        <span class="tl-event">第一次鴉片戰爭 → 《南京條約》割讓香港島</span>
+        <span class="tl-tag decline">外患</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1851-1864</span>
+        <span class="tl-event">太平天國運動（死亡2000-5000萬人）</span>
+        <span class="tl-tag decline">內憂</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1856-1860</span>
+        <span class="tl-event">第二次鴉片戰爭 → 《天津》《北京條約》</span>
+        <span class="tl-tag decline">外患</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1861-1895</span>
+        <span class="tl-event">洋務運動（師夷長技以制夷）</span>
+        <span class="tl-tag reform">圖強</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1894-1895</span>
+        <span class="tl-event">甲午戰爭 → 《馬關條約》割讓台灣</span>
+        <span class="tl-tag decline">重創</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1898</span>
+        <span class="tl-event">戊戌維新（103 天 → 慈禧政變推翻）</span>
+        <span class="tl-tag reform">圖強</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1900-1901</span>
+        <span class="tl-event">八國聯軍 → 《辛丑條約》</span>
+        <span class="tl-tag decline">重創</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1901-1911</span>
+        <span class="tl-event">清末新政（預備立憲 → 皇族內閣）</span>
+        <span class="tl-tag reform">圖強</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1911</span>
+        <span class="tl-event">武昌起義 → 各省響應</span>
+        <span class="tl-tag decline">終結</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">1912</span>
+        <span class="tl-event">宣統退位 → 清朝滅亡</span>
+        <span class="tl-tag decline">終結</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ====== 第2節：三大因果鏈 ====== -->
+<div class="section s2 open" id="s2">
+  <div class="section-header" onclick="toggle(this.parentElement)">
+    <span>🔗 三大核心因果鏈（背景分析題必備）</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:13px;color:#666;margin-bottom:10px;">
+      📖 完整方法見 <a href="技能框架_因果鏈分析.html" style="color:#2e7d32;">因果鏈分析框架</a>
+      · 三步法：定位事件 → 往前找原因 → 往後推影響
+    </p>
+
+    <div class="subsection">
+      <h3>① 清朝由盛轉衰的因果鏈</h3>
+      <div class="causal-chain">乾隆晚年和珅專權
+    ↓
+吏治腐敗 → 貪風盛行 → 國庫空虛
+    ↓
+軍隊戰力下降 ← 軍費被侵吞
+    ↓
+白蓮教起事（1796-1804）→ 耗費二億兩白銀
+    ↓
+       清政府全面中衰</div>
+      <div class="q-box">
+        <div class="q-label">📝 典型題型</div>
+        <div class="q-text">試分析清朝由盛轉衰的關鍵原因。</div>
+      </div>
+      <div class="answer-demo">
+        <div class="a-label">✅ 答題思路</div>
+        <span class="method-ref">因果鏈三步法</span>
+        <strong>① 定位事件：</strong>清朝在康雍乾盛世後走向中衰。<br>
+        <strong>② 往前找原因——遠因：</strong>乾隆晚年怠政，寵信和珅，導致吏治腐敗；<span class="highlight">根本原因是「盛世下的制度老化」</span>——清初的勤政制度在長期和平中鬆弛。<br>
+        <strong>③ 往前找原因——近因：</strong>白蓮教起事（1796-1804）暴露了軍隊的無能——花了二億兩才平定，直接證明了國力衰退。<br>
+        <strong>④ 往後推影響：</strong>中衰導致清廷無力應對後來的西方衝擊，間接導致了鴉片戰爭的失敗。
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>② 鴉片戰爭爆發的因果鏈</h3>
+      <div class="causal-chain">西方工業革命（1760s）
+    ↓
+生產力爆炸 → 需要原料和市場
+    ↓
+清廷閉關政策 → 一口通商（廣州）→ 貿易逆差
+    ↓
+英國走私鴉片 → 白銀大量外流
+    ↓
+林則徐虎門銷煙（1839）
+    ↓
+英國國會通過出兵 → 第一次鴉片戰爭（1840-1842）</div>
+      <div class="q-box">
+        <div class="q-label">📝 典型題型</div>
+        <div class="q-text">分析清廷閉關政策如何導致了鴉片戰爭的爆發。</div>
+      </div>
+      <div class="answer-demo">
+        <div class="a-label">✅ 答題思路</div>
+        <span class="method-ref">因果鏈三步法</span>
+        <strong>遠因（結構性）：</strong>英國工業革命後生產力大增，急需海外市場和原料；清廷卻實行閉關政策，只開放廣州一口通商，並由公行壟斷貿易。<br>
+        <strong>近因（觸發）：</strong>中英貿易失衡——英國大量進口中國茶葉絲綢，卻找不到商品平衡→轉向走私鴉片→中國白銀外流→林則徐禁煙→虎門銷煙。<br>
+        <strong>根本原因：</strong><span class="highlight">中西方力量此消彼長</span> + 清廷對世界變化無知（馬戛爾尼使團1793年已來訪，清廷不屑一顧）。
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>③ 清朝滅亡的因果鏈</h3>
+      <div class="causal-chain">兩次鴉片戰爭戰敗 → 洋務運動（學技術）
+    ↓
+甲午戰爭（1895）→ 洋務運動失敗
+    ↓
+戊戌維新（學制度）→ 慈禧政變推翻
+    ↓
+八國聯軍（1900）→ 清廷威信掃地
+    ↓
+清末新政（被迫全面改革）→ 皇族內閣
+    ↓
+立憲派失望 → 革命思潮高漲
+    ↓
+武昌起義（1911）→ 清朝滅亡（1912）</div>
+      <div class="q-box">
+        <div class="q-label">📝 典型題型</div>
+        <div class="q-text">試分析清朝滅亡的根本原因。</div>
+      </div>
+      <div class="answer-demo">
+        <div class="a-label">✅ 答題思路</div>
+        <span class="method-ref">因果鏈三步法</span>
+        <strong>根本原因：</strong>清廷始終無法解決「制度現代化」的問題——洋務運動只學技術不學制度、戊戌維新被推翻、清末新政的「皇族內閣」暴露了清廷無意真正放權。<br>
+        <strong>加速因素：</strong>每一次外部衝擊（鴉片戰爭、甲午戰爭、八國聯軍）都暴露了清廷的無能，令更多人轉向革命。<br>
+        <strong>關鍵轉折：</strong>清末新政本意是自救，但「皇族內閣」令立憲派徹底失望，轉而支持革命——<span class="highlight">改革速度永遠跟不上革命腳步</span>。
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ====== 第3節：四大背景分析 ====== -->
+<div class="section s3 open" id="s3">
+  <div class="section-header" onclick="toggle(this.parentElement)">
+    <span>📋 四大必考背景分析題（explain）</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:13px;color:#666;margin-bottom:10px;">
+      背景分析題 = 解釋「為甚麼會發生」——使用 <strong>因果鏈三步法</strong>：遠因→近因→根本原因。
+    </p>
+
+    <!-- Q1 -->
+    <div class="subsection">
+      <h3>1. 滿清為甚麼能入關統治中國？</h3>
+      <div class="answer-demo">
+        <div class="a-label">✅ 三大關鍵因素</div>
+        <strong>① 明朝內部崩潰：</strong>李自成攻陷北京（1644），崇禎帝自縊，明朝滅亡——權力真空為清軍入關提供了機會。<br>
+        <strong>② 吳三桂引清兵：</strong>山海關守將吳三桂在李自成和清軍之間選擇降清——原因包括：家人被李自成侵犯（「衝冠一怒為紅顏」）、權力計算（認為清軍更可靠）。<br>
+        <strong>③ 清軍實力佔優：</strong>八旗軍戰鬥力遠超李自成農民軍和南明軍隊，加上清廷採取「高壓＋懷柔」並濟策略，逐步消滅各地反抗勢力。<br>
+        <span class="highlight">一句話總結：明亡 + 吳降 + 清強，三者缺一不可。</span>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="subsection">
+      <h3>2. 清朝為甚麼會從盛世走向衰落？</h3>
+      <div class="answer-demo">
+        <div class="a-label">✅ 四大原因（由內而外）</div>
+        <table class="compare-table">
+          <tr><th>原因</th><th>具體表現</th><th>關鍵詞</th></tr>
+          <tr><td class="dim">① 吏治腐敗</td><td>乾隆晚年怠政，和珅專權20年，貪污金額相當於清廷十多年財政收入</td><td>和珅跌倒，嘉慶吃飽</td></tr>
+          <tr><td class="dim">② 財政惡化</td><td>白蓮教起事耗費二億兩白銀 + 官員貪腐 → 國庫空虛</td><td>入不敷出</td></tr>
+          <tr><td class="dim">③ 軍隊廢弛</td><td>八旗兵長期享樂，戰鬥力大降——白蓮教起事全靠鄉勇鎮壓</td><td>兵不能戰</td></tr>
+          <tr><td class="dim">④ 制度僵化</td><td>盛世時期沒有推動制度改革，閉關自守，對西方工業革命一無所知</td><td>錯失改革時機</td></tr>
+        </table>
+        <span class="highlight">根本原因：盛世的成功導致制度僵化和改革動力喪失。</span>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="subsection">
+      <h3>3. 為甚麼洋務運動會失敗？</h3>
+      <div class="answer-demo">
+        <div class="a-label">✅ 四大失敗原因</div>
+        <table class="compare-table">
+          <tr><th>原因</th><th>說明</th></tr>
+          <tr><td class="dim">① 只學技術，不學制度</td><td>口號「中體西用」——只引進西方軍事和工業技術，不改革政治制度</td></tr>
+          <tr><td class="dim">② 守舊勢力反對</td><td>頑固派認為「鐵路破壞風水」「電報擾民」，處處阻撓</td></tr>
+          <tr><td class="dim">③ 管理腐敗</td><td>官辦企業效率低，官員中飽私囊——例如北洋海軍軍費用來修建頤和園</td></tr>
+          <tr><td class="dim">④ 外部衝擊</td><td>甲午戰爭（1895）一戰證明：只學技術不學制度，還是打不過日本</td></tr>
+        </table>
+        <span class="highlight">一句話：不改革制度，光買槍炮是救不了國的。</span>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="subsection">
+      <h3>4. 為甚麼清末新政反而加速了清朝滅亡？</h3>
+      <div class="q-box">
+        <div class="q-label">📝 典型考題（論點描述題）</div>
+        <div class="q-text">「清末新政是清朝的自救，但最終卻加速了清朝的滅亡。」你同意嗎？</div>
+      </div>
+      <div class="answer-demo">
+        <div class="a-label">✅ 分析思路（P-E-B-C 框架）</div>
+        <span class="method-ref">評價分析 P-E-B-C</span>
+        <strong>Position：</strong>我同意這個觀點。清末新政雖然意圖自救，但反而加速了清朝的滅亡。<br>
+        <strong>Evidence（原因一：太晚）：</strong>八國聯軍後（1901）才推行全面改革，距離革命爆發只有10年——時間不足以挽回民心。<br>
+        <strong>Evidence（原因二：虛假改革）：</strong>「皇族內閣」13人中9人是滿人皇族——立憲派期待的「真立憲」徹底落空，轉而支持革命。<br>
+        <strong>Evidence（原因三：改革培養了反對者）：</strong>廢科舉、辦新學 → 學生接受新思想 → 成為革命骨幹；練新軍 → 新軍成為武昌起義主力。<br>
+        <strong>Balance：</strong>但也有觀點認為，如果新政提早20年推行，或許能夠挽救清朝——改革的問題不在於內容，而在於時機。<br>
+        <strong>Conclusion：</strong>總體來說，清末新政是一場「來得太遲的誠意不足的改革」，它非但沒能自救，反而加速了清朝的滅亡。
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ====== 第4節：三大比較題 ====== -->
+<div class="section s4 open" id="s4">
+  <div class="section-header" onclick="toggle(this.parentElement)">
+    <span>📊 三大必考比較題（compare）</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:13px;color:#666;margin-bottom:10px;">
+      📖 完整方法見 <a href="技能框架_對比分析.html" style="color:#1565c0;">對比分析框架</a>
+      · 三步法：選維度 → 填內容 → 下結論
+    </p>
+
+    <div class="subsection">
+      <h3>① 康雍乾三位皇帝施政比較</h3>
+      <p style="font-size:12px;color:#888;margin-bottom:6px;">答題重點：不只列出事實，要在同一維度上比較差異。</p>
+      <table class="compare-table">
+        <tr><th>比較維度</th><th>康熙（1662-1722）</th><th>雍正（1723-1735）</th><th>乾隆（1736-1795）</th></tr>
+        <tr><td class="dim">任期</td><td>61年（最長）</td><td>13年（最短）</td><td>60年</td></tr>
+        <tr><td class="dim">主要貢獻</td><td>平定三藩、收台灣、簽《尼布楚條約》</td><td>攤丁入地、懲治貪官、設軍機處</td><td>征回部（新疆）、修《四庫全書》</td></tr>
+        <tr><td class="dim">施政風格</td><td>寬仁包容</td><td>嚴厲務實</td><td>前期勤政、晚年怠政</td></tr>
+        <tr><td class="dim">對漢政策</td><td>懷柔為主（博學鴻詞科）</td><td>高壓為主（文字獄多）</td><td>高壓＋懷柔並用</td></tr>
+        <tr><td class="dim">最大成就</td><td>鞏固統一</td><td>制度改革</td><td>版圖擴張</td></tr>
+      </table>
+      <div class="answer-demo">
+        <div class="a-label">✅ 一句話結論</div>
+        <span class="highlight">康熙奠基、雍正改革、乾隆擴張——三位皇帝接力打造了134年的盛世。</span>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>② 三場圖強運動比較</h3>
+      <p style="font-size:12px;color:#888;margin-bottom:6px;">這是清朝最常考的比較題之一，幾乎每年必出。</p>
+      <table class="compare-table">
+        <tr><th>比較維度</th><th>洋務運動（1861-1895）</th><th>戊戌維新（1898）</th><th>清末新政（1901-1911）</th></tr>
+        <tr><td class="dim">背景</td><td>兩次鴉片戰爭＋太平天國</td><td>甲午戰爭戰敗</td><td>八國聯軍後威信掃地</td></tr>
+        <tr><td class="dim">口號／目標</td><td>師夷長技以制夷（中體西用）</td><td>全變速變（學日本明治維新）</td><td>預備立憲（被迫全面改革）</td></tr>
+        <tr><td class="dim">手段</td><td>引進西方軍事、工業技術</td><td>政治制度改革（君主立憲）</td><td>廢科舉、練新軍、設議院</td></tr>
+        <tr><td class="dim">態度</td><td>主動學習（部分官員）</td><td>主動求變（光緒＋維新派）</td><td>被迫改革（慈禧主導）</td></tr>
+        <tr><td class="dim">範圍</td><td>局部（軍事、工業）</td><td>全面（含政治制度）</td><td>全面（含預備立憲）</td></tr>
+        <tr><td class="dim">阻礙</td><td>守舊勢力反對</td><td>慈禧發動政變（103天）</td><td>皇族內閣令人失望</td></tr>
+        <tr><td class="dim">結果</td><td>甲午戰敗證明失敗</td><td>百日維新被推翻</td><td>加速革命，清朝滅亡</td></tr>
+      </table>
+      <div class="answer-demo">
+        <div class="a-label">✅ 一句話結論</div>
+        <span class="highlight">從洋務到維新再到新政，改革的深度逐步加深，但速度永遠跟不上革命的腳步。</span>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>③ 兩次鴉片戰爭比較</h3>
+      <table class="compare-table">
+        <tr><th>比較維度</th><th>第一次（1840-1842）</th><th>第二次（1856-1860）</th></tr>
+        <tr><td class="dim">直接原因</td><td>林則徐虎門銷煙</td><td>「亞羅號事件」＋「廣西教案」</td></tr>
+        <tr><td class="dim">參戰國</td><td>英國</td><td>英法聯軍</td></tr>
+        <tr><td class="dim">主要條約</td><td>《南京條約》</td><td>《天津條約》《北京條約》</td></tr>
+        <tr><td class="dim">割地</td><td>香港島</td><td>九龍半島南部</td></tr>
+        <tr><td class="dim">通商口岸</td><td>五口通商（廣廈福寧上）</td><td>增加至11個（含長江口岸）</td></tr>
+        <tr><td class="dim">其他後果</td><td>賠款2100萬銀元</td><td>外國公使進京、鴉片貿易合法化</td></tr>
+        <tr><td class="dim">對清廷衝擊</td><td>局部震驚</td><td>朝廷被迫逃亡（英法聯軍火燒圓明園）</td></tr>
+      </table>
+      <div class="answer-demo">
+        <div class="a-label">✅ 一句話結論</div>
+        <span class="highlight">第一次是英國的單方面打擊，第二次是英法聯軍的毀滅性教訓——後者令清廷徹底認識到洋人不可抗拒。</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ====== 第5節：五大評價題 ====== -->
+<div class="section s5 open" id="s5">
+  <div class="section-header" onclick="toggle(this.parentElement)">
+    <span>⚖️ 五大必考評價題（evaluate）</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:13px;color:#666;margin-bottom:10px;">
+      📖 完整方法見 <a href="技能框架_評價分析.html" style="color:#7b1fa2;">評價分析框架</a>
+      · P-E-B-C：<strong>P</strong>osition → <strong>E</strong>vidence → <strong>B</strong>alance → <strong>C</strong>onclusion
+    </p>
+
+    <div class="subsection">
+      <h3>① 「閉關政策對清朝是好是壞？」</h3>
+      <div class="answer-demo">
+        <div class="a-label">✅ P-E-B-C 範例</div>
+        <span class="method-ref">P</span> <strong>表立場：</strong>我認為閉關政策在短期內維護了穩定，但長期來看對清朝弊大於利。<br>
+        <span class="method-ref">E</span> <strong>給證據（反面）：</strong>閉關政策使清廷對世界變化一無所知——當英國工業革命（1760s）後生產力大爆發時，清廷仍滿足於天朝上國的幻覺。馬戛爾尼使團（1793）帶來先進科技，清廷不屑一顧。這種無知直接導致了後來鴉片戰爭的失敗。<br>
+        <span class="method-ref">B</span> <strong>做平衡：</strong>然而，也有觀點認為閉關政策在清初有合理之處——它減少了西方勢力對沿海的滲透，維護了社會穩定。乾隆年間的廣州一口通商制度也為國庫帶來了穩定收入。<br>
+        <span class="method-ref">C</span> <strong>下結論：</strong>總體來說，閉關政策在清初（17-18世紀）或許是合理的選擇，但19世紀後，它使中國錯過了工業革命和現代化的機遇，代價極其沉重。
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>② 「洋務運動為甚麼失敗？誰的責任？」</h3>
+      <div class="answer-demo">
+        <div class="a-label">✅ P-E-B-C 範例</div>
+        <span class="method-ref">P</span> <strong>表立場：</strong>洋務運動失敗的主要責任不在於個人，而在於「中體西用」的方針本身有根本缺陷。<br>
+        <span class="method-ref">E</span> <strong>給證據：</strong>李鴻章、曾國藩等洋務派確實努力引進了西方技術——創辦江南製造局、北洋海軍、輪船招商局等。然而，這些努力沒有觸及政治制度。北洋海軍一度是亞洲第一艦隊，但甲午戰爭（1895）中全軍覆沒，證明了「新式武器＋舊式制度」行不通。<br>
+        <span class="method-ref">B</span> <strong>做平衡：</strong>也有人認為洋務派有其苦衷——在當時的朝廷中，守舊勢力強大（如倭仁反對同文館），洋務派只能在夾縫中求變。他們已經做了那個時代能做到的最大努力。<br>
+        <span class="method-ref">C</span> <strong>下結論：</strong>洋務運動的失敗，根本原因在於不改革政治制度而只引進技術。這是一場「遮遮掩掩的現代化」，注定無法成功。
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>③ 「維新派敗在哪裏？」</h3>
+      <div class="answer-demo">
+        <div class="a-label">✅ P-E-B-C 範例</div>
+        <span class="method-ref">P</span> <strong>表立場：</strong>維新派失敗的主要原因是策略失誤——太快、太急、太天真。<br>
+        <span class="method-ref">E</span> <strong>給證據：</strong>戊戌維新僅103天，光緒帝下了數十道改革詔書，涉及廢科舉、設議院、練新軍等全面變革，沒有任何緩衝。康有為建議「全變速變」，但這激怒了所有既得利益者——從慈禧到地方官員到科舉士人，反對力量全部集結起來。維新派還錯誤地孤立了慈禧，沒有爭取軍權（如袁世凱告密）。<br>
+        <span class="method-ref">B</span> <strong>做平衡：</strong>然而，也有觀點認為維新派之所以急迫，是因為甲午戰敗後國勢危急，他們覺得沒有時間慢慢來。他們面對的是一個完全不願改革的統治集團。<br>
+        <span class="method-ref">C</span> <strong>下結論：</strong>維新派的失敗，歸根究底是「改革的速度超越了權力格局能夠容忍的範圍」。他們的理想是對的，但策略是錯的。
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>④ 「新政為甚麼反而加速清朝滅亡？」</h3>
+      <div class="answer-demo">
+        <div class="a-label">✅ P-E-B-C 範例</div>
+        <span class="method-ref">P</span> <strong>表立場：</strong>我同意清末新政反而加速了清朝滅亡的說法。<br>
+        <span class="method-ref">E</span> <strong>給證據：</strong>有三個關鍵原因。第一，時間太晚——新政在八國聯軍後才推行，距離革命爆發不到10年。第二，誠意不足——「皇族內閣」暴露了清廷無意真正放權，令立憲派徹底失望。第三，改革培養了革命者——廢科舉使讀書人失去出路，新式學堂培養了革命思想，新軍成了武昌起義的主力。<br>
+        <span class="method-ref">B</span> <strong>做平衡：</strong>但從清廷的角度來看，他們也有難處——滿清統治者始終擔心改革會削弱自己的權力。在專制體制下，真改革意味著真放權，這是他們做不到的。<br>
+        <span class="method-ref">C</span> <strong>下結論：</strong>清末新政是一場「在錯誤時間、以錯誤態度、由錯誤的人推行」的改革。它不僅沒有挽救清朝，反而加速了它的滅亡。
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>⑤ 「康雍乾盛世是中國最後的黃金時代——你是否同意？」</h3>
+      <div class="q-box">
+        <div class="q-label">📝 高難度考題</div>
+        <div class="q-text">「康雍乾盛世是中國最後的黃金時代。」你是否同意這個觀點？試援引史實加以析論。</div>
+      </div>
+      <div class="answer-demo">
+        <div class="a-label">✅ P-E-B-C 範例</div>
+        <span class="method-ref">P</span> <strong>表立場：</strong>我部分同意這個觀點。康雍乾盛世在版圖、經濟、文化方面確實達到了極高水平，但它也有重大的局限性。<br>
+        <span class="method-ref">E</span> <strong>給證據（同意方面）：</strong>版圖超越漢唐，北至蒙古、西達新疆、南括台灣、東含庫頁島；人口從清初約1億增長到乾隆末年的3億；經濟總量佔世界的三分之一；文化上有《四庫全書》等巨著。<br>
+        <span class="method-ref">E</span> <strong>給證據（不同意方面）：</strong>然而，這個「盛世」有兩大陰影——①文字獄空前猖獗，思想禁錮嚴重；②閉關政策使中國與世界隔絕，就在這個「盛世」期間（1760s），英國開始了工業革命，東西方的力量開始逆轉。此外，乾隆晚年和珅專權、吏治腐敗，盛世實際已在崩塌邊緣。<br>
+        <span class="method-ref">C</span> <strong>下結論：</strong>康雍乾盛世是中國傳統農耕文明的巔峰，但如果從全球視野來看，這個「黃金時代」恰恰是中國從領先走向落後的轉折點——輝煌的表面下埋藏了後來百年苦難的種子。
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ====== 第6節：史料分析 ====== -->
+<div class="section s6 open" id="s6">
+  <div class="section-header" onclick="toggle(this.parentElement)">
+    <span>🔍 史料分析實戰（S-T-A-R）</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:13px;color:#666;margin-bottom:10px;">
+      📖 完整方法見 <a href="技能框架_史料分析.html" style="color:#e65100;">史料分析框架</a>
+      · S-T-A-R 四問法：<strong>S</strong>ource → <strong>T</strong>one → <strong>A</strong>rgument → <strong>R</strong>eliability
+    </p>
+
+    <div class="subsection">
+      <h3>練習一：史料辨識</h3>
+      <p style="font-size:13px;color:#666;">以下史料關於清朝，判斷哪些是一手史料（P），哪些是二手史料（S）：</p>
+      <table class="compare-table">
+        <tr><th>史料</th><th>你的判斷</th></tr>
+        <tr><td>① 康熙帝給台灣鄭氏家族的詔書</td><td>▢ 一手 ▢ 二手</td></tr>
+        <tr><td>② 《清史稿》（民國時期編寫的清朝歷史）</td><td>▢ 一手 ▢ 二手</td></tr>
+        <tr><td>③ 林則徐呈給道光帝的禁煙奏摺</td><td>▢ 一手 ▢ 二手</td></tr>
+        <tr><td>④ 鴉片戰爭時期英國報紙的報道</td><td>▢ 一手 ▢ 二手</td></tr>
+        <tr><td>⑤ 今天的歷史教科書對洋務運動的描述</td><td>▢ 一手 ▢ 二手</td></tr>
+      </table>
+      <div class="answer-demo" style="margin-top:6px;">
+        <div class="a-label">✅ 答案</div>
+        <strong>① 一手</strong>（當時的官方文件） · <strong>② 二手</strong>（後人編寫） · <strong>③ 一手</strong>（當時奏摺） · <strong>④ 一手</strong>（當時媒體） · <strong>⑤ 二手</strong>（後人編寫）
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>練習二：S-T-A-R 分析實戰</h3>
+      <div class="source-box">
+        <div class="src-label">📜 史料</div>
+        <p style="font-style:italic;color:#555;">
+          「今日本之所以敢於發動甲午戰爭，實因見我北洋海軍名為『亞洲第一』，實則軍紀廢弛、訓練鬆懈、將領貪腐。戰前日本諜報人員已將我艦隊虛實探明，而我尚在夢中。」
+        </p>
+        <p style="text-align:right;font-size:12px;color:#999;">——改寫自當時外國軍事觀察員的報告</p>
+      </div>
+      <div class="answer-demo">
+        <div class="a-label">✅ S-T-A-R 分析</div>
+        <strong>S（來源）：</strong>外國軍事觀察員的報告——旁觀者視角，非中國也非日本，相對中立。<br>
+        <strong>T（立場）：</strong>報告持批評態度，指出北洋海軍表面強大實則虛弱——用詞「名為……實則」「尚在夢中」帶有貶義和惋惜。<br>
+        <strong>A（論點）：</strong>核心訊息是「北洋海軍的虛弱是日本敢於開戰的原因」——不是日本太強，而是中國太弱。<br>
+        <strong>R（可信度）：</strong>外國觀察員的報告有一定的可信度（旁觀者），但也要考慮作者是否有偏見（例如是否親日或親中）。可交叉印證其他史料：如甲午戰前日本間諜（宗方小太郎）的報告、戰後李鴻章的回憶。
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>練習三：史料實戰答題</h3>
+      <div class="q-box">
+        <div class="q-label">📝 典型考題</div>
+        <div class="q-text">細閱以下史料，然後回答問題。</div>
+      </div>
+      <div class="source-box">
+        <div class="src-label">📜 史料一</div>
+        <p style="font-style:italic;color:#555;">
+          「天朝物產豐盈，無所不有，原不藉外夷貨物以通有無。」
+        </p>
+        <p style="text-align:right;font-size:12px;color:#999;">——乾隆帝致英國國王喬治三世的敕諭（1793年）</p>
+      </div>
+      <div class="source-box">
+        <div class="src-label">📜 史料二</div>
+        <p style="font-style:italic;color:#555;">
+          「中國之敗，敗在制度。洋務派只知購船炮，不知變法。今日之日本，明治維新三十年，已能打敗中國。明日之世界，恐再無中國立足之地。」
+        </p>
+        <p style="text-align:right;font-size:12px;color:#999;">——康有為《上清帝第五書》（1897年）</p>
+      </div>
+      <div class="answer-demo">
+        <div class="a-label">✅ 答題示範</div>
+        <strong>問題1：</strong>史料一反映了清朝統治者怎樣的態度？（2分）<br>
+        <strong>答：</strong>反映了清廷的<span class="highlight">自大和封閉</span>——乾隆帝認為天朝不需要外國商品，對西方世界不屑一顧。這種態度導致了閉關政策的持續和對世界變化的無知。（2分）<br><br>
+        <strong>問題2：</strong>根據史料一和史料二，分析清朝由強轉弱的關鍵原因。（6分）<br>
+        <strong>答：</strong><br>
+        ① <strong>心態落後（引用史料一）：</strong>乾隆帝的「天朝物產豐盈」反映了清廷的盲目自大——1793年正是英國工業革命高歌猛進之時，清廷卻拒絕了解外部世界。（2分）<br>
+        ② <strong>改革不徹底（引用史料二）：</strong>康有為指出洋務運動只購船炮不變制度——甲午戰爭對比日本明治維新的成功，證明了「中體西用」的失敗。（2分）<br>
+        ③ <strong>根本原因：</strong>清廷始終無法完成制度現代化——心態上不願正視世界變化，行動上不願進行真正改革，最終從盛世走向衰落。（2分）
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ====== 第7節：答題框架速查卡 ====== -->
+<div class="section s7 open" id="s7">
+  <div class="section-header" onclick="toggle(this.parentElement)">
+    <span>📇 答題框架速查卡（考前必看）</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:13px;color:#666;margin-bottom:10px;">
+      四種題型的答題框架濃縮版——考試時先判斷題型，再對應使用。
+    </p>
+
+    <div class="card-grid">
+      <div class="fcard">
+        <h4>🔍 史料分析題</h4>
+        <p><strong>S-T-A-R 四問法</strong><br>
+        <strong>S</strong> — 來源？（誰寫的？何時？）<br>
+        <strong>T</strong> — 立場語氣？（支持/反對？用詞？）<br>
+        <strong>A</strong> — 論點？（核心訊息？想證明什麼？）<br>
+        <strong>R</strong> — 可信度？（偏見？交叉印證？）</p>
+      </div>
+      <div class="fcard">
+        <h4>🔗 背景分析題（解釋原因）</h4>
+        <p><strong>因果鏈三步法</strong><br>
+        ① <strong>定位事件</strong> — 明確你要分析的歷史事件<br>
+        ② <strong>往前找原因</strong> — 遠因/近因/根本原因/導火線<br>
+        ③ <strong>往後推影響</strong> — 直接影響/間接影響/長期影響</p>
+      </div>
+      <div class="fcard">
+        <h4>📊 比較題</h4>
+        <p><strong>對比三步法</strong><br>
+        ① <strong>選維度</strong> — 時間/動機/規模/手段/結果/性質<br>
+        ② <strong>填內容</strong> — 在同一維度下分別列出雙方的對應內容<br>
+        ③ <strong>下結論</strong> — 一句話說出最關鍵的差異或相同點</p>
+      </div>
+      <div class="fcard">
+        <h4>⚖️ 評價題（論點描述）</h4>
+        <p><strong>P-E-B-C 四步法</strong><br>
+        <strong>P</strong> — 表立場（同意/不同意/部分同意）<br>
+        <strong>E</strong> — 給證據（具體史實支持）<br>
+        <strong>B</strong> — 做平衡（承認反面觀點）<br>
+        <strong>C</strong> — 下結論（綜合判斷）</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>清朝答題金句（可直接套用）</h3>
+      <table class="compare-table">
+        <tr><th>題型</th><th>答題框架開頭</th></tr>
+        <tr><td class="dim">原因分析</td><td>「……的原因可從以下幾方面分析：從遠因來看……從近因來看……根本原因在於……」</td></tr>
+        <tr><td class="dim">比較</td><td>「兩者在……方面有相似之處，但在……方面有明顯差異。最關鍵的不同是……」</td></tr>
+        <tr><td class="dim">評價（同意）</td><td>「我同意這個觀點，因為……。然而，也有觀點認為……。但總體而言……」</td></tr>
+        <tr><td class="dim">評價（不同意）</td><td>「我不同意這個觀點。雖然……有其合理之處，但我認為……才是更關鍵的因素。」</td></tr>
+        <tr><td class="dim">史料分析</td><td>「這是一份……（一手/二手）史料。從來源看……從內容看……綜合判斷其可信度……」</td></tr>
+      </table>
+    </div>
+
+    <div class="subsection">
+      <h3>記分策略：不同層次的答案長什麼樣？</h3>
+      <table class="compare-table">
+        <tr><th>分數層次</th><th>特徵</th><th>例子（「洋務運動為甚麼失敗？」）</th></tr>
+        <tr><td class="dim">低分（1-2分）</td><td>只給事實，不解釋</td><td>「因為甲午戰爭打輸了。」（事實，但沒分析原因）</td></tr>
+        <tr><td class="dim">中等（3-4分）</td><td>有分析，單一角度</td><td>「因為洋務運動只學西方技術，沒有改革政治制度。」（對的，但只有一個角度）</td></tr>
+        <tr><td class="dim">高分（5-6分）</td><td>多角度分析＋有層次</td><td>「洋務運動失敗有多方面原因：制度上只學技術不學制度；政治上守舊勢力反對；管理上官辦企業效率低；外部上甲午戰爭一戰證明失敗。根本原因是『中體西用』的方針有缺陷。」</td></tr>
+        <tr><td class="dim">滿分（7-8分）</td><td>多角度＋跨主題連結＋平衡觀點</td><td>上述內容＋「這與後來戊戌維新、清末新政的失敗一脈相承——清朝始終無法解決『在專制體制下進行現代化』這個根本矛盾。也有觀點認為洋務派已做了最大努力，但時代的局限使他們無法突破『中體西用』的框架。」</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ====== 第8節：戰爭與不平等條約 ====== -->
+<div class="section s8 open" id="s8">
+  <div class="section-header" onclick="toggle(this.parentElement)">
+    <span>⚔️ 戰爭與不平等條約 × 清朝發展影響</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:13px;color:#666;margin-bottom:10px;">
+      每次戰爭 + 不平等條約都是清朝歷史的「轉折點」。理解它們對清朝發展的影響，是背景分析題和論述題的關鍵。
+    </p>
+
+    <!-- 第一次鴉片戰爭 -->
+    <div class="subsection">
+      <h3>① 第一次鴉片戰爭（1840-1842）→ 《南京條約》（1842）</h3>
+      <table class="compare-table">
+        <tr><th>維度</th><th>內容</th><th>對清朝發展的影響</th></tr>
+        <tr>
+          <td class="dim">條約內容</td>
+          <td>割讓香港島 · 五口通商（廣州、廈門、福州、寧波、上海）<br>賠款 2100 萬銀元 · 協定關稅</td>
+          <td rowspan="3" style="background:#fce4ec;">
+            <strong>🔻 轉折點：清朝由獨立主權國家開始走向半殖民地</strong><br><br>
+            • <strong>政治：</strong>清廷「天朝上國」形象破滅，威權受損<br>
+            • <strong>經濟：</strong>五口通商打破廣州一口壟斷，關稅自主權喪失<br>
+            • <strong>社會：</strong>鴉片合法化（1858年）→ 吸食人口大增，白銀繼續外流<br>
+            • <strong>軍事：</strong>清廷首次認識到西方船堅炮利，但未作根本改革<br>
+            • <strong>長遠：</strong>開創了「戰敗→割地賠款」的先例，後續列強紛紛仿效
+          </td>
+        </tr>
+        <tr>
+          <td class="dim">戰爭性質</td>
+          <td>英國為保護鴉片貿易而發動的侵略戰爭</td>
+        </tr>
+        <tr>
+          <td class="dim">對比前後</td>
+          <td>戰前：清朝自認天下中心，閉關自守<br>戰後：被迫開放，天朝權威受損</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 第二次鴉片戰爭 -->
+    <div class="subsection">
+      <h3>② 第二次鴉片戰爭（1856-1860）→ 《天津條約》（1858）+ 《北京條約》（1860）</h3>
+      <table class="compare-table">
+        <tr><th>維度</th><th>內容</th><th>對清朝發展的影響</th></tr>
+        <tr>
+          <td class="dim">條約內容</td>
+          <td>開放更多通商口岸（包括長江沿岸）<br>外國公使進駐北京 · 割讓九龍半島南部<br>鴉片貿易合法化 · 容許外國人在內地傳教<br>賠款英法各 800 萬兩</td>
+          <td rowspan="3" style="background:#fce4ec;">
+            <strong>🔻 進一步淪為半殖民地，但催生了洋務運動</strong><br><br>
+            • <strong>政治：</strong>外國公使駐京 → 清廷再也無法保持「天朝」姿態；總理各國事務衙門成立（1861）→ 外交制度現代化起點<br>
+            • <strong>經濟：</strong>長江開放通商 → 外國勢力深入內地；關稅進一步受列強控制<br>
+            • <strong>領土：</strong>割讓九龍半島 + 俄國侵佔東北100多萬平方公里領土<br>
+            • <strong>文化：</strong>傳教條款 → 教案頻發（如天津教案1870），加劇社會矛盾<br>
+            • <strong>正面影響：</strong>「英法聯軍之役」的震撼 > 第一次鴉片戰爭 → 促使恭親王奕訢、曾國藩、李鴻章等推動洋務運動（1861起）
+          </td>
+        </tr>
+        <tr>
+          <td class="dim">戰爭性質</td>
+          <td>英法為擴大在華利益而發動的侵略戰爭</td>
+        </tr>
+        <tr>
+          <td class="dim">與第一次對比</td>
+          <td>打擊更深——外國公使進京、北京被佔領、圓明園被焚燬<br>清廷終於認真圖強</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 甲午戰爭 -->
+    <div class="subsection">
+      <h3>③ 甲午戰爭（1894-1895）→ 《馬關條約》（1895）</h3>
+      <table class="compare-table">
+        <tr><th>維度</th><th>內容</th><th>對清朝發展的影響</th></tr>
+        <tr>
+          <td class="dim">條約內容</td>
+          <td>割讓台灣、澎湖、遼東半島（後三國干涉還遼）<br>賠款 2 億兩白銀 · 開放沙市、重慶等 4 個口岸<br>允許日本在通商口岸設廠</td>
+          <td rowspan="3" style="background:#fce4ec;">
+            <strong>🔻 最致命的一擊——洋務運動破產 + 瓜分危機</strong><br><br>
+            • <strong>政治：</strong>被「學生」日本打敗 → 舉國震動；洋務運動宣告失敗；瓜分危機（列強紛紛租借港灣：德國佔膠州灣、俄國佔旅順大連、英國佔威海衛）<br>
+            • <strong>經濟：</strong>2 億兩賠款（約等於清廷3年財政收入）→ 被迫向列強大舉借款 → 進一步受制於人；允許日本在華設廠 → 列強紛紛設廠 → 阻礙中國民族工業發展<br>
+            • <strong>領土：</strong>割讓台灣+澎湖——是清朝首次割讓省級領土<br>
+            • <strong>社會：</strong>舉國要求變法 → 維新思潮高漲 → 直接催生戊戌維新（1898）<br>
+            • <strong>正面：</strong>刺激了中國的現代化意識——從「學技術」走向「學制度」
+          </td>
+        </tr>
+        <tr>
+          <td class="dim">戰爭性質</td>
+          <td>日本蓄謀已久的擴張戰爭——考驗洋務運動成效的關鍵一戰</td>
+        </tr>
+        <tr>
+          <td class="dim">象徵意義</td>
+          <td>「中體西用」徹底破產——光買船炮不改革制度，連日本都打不過</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 八國聯軍 -->
+    <div class="subsection">
+      <h3>④ 八國聯軍之役（1900-1901）→ 《辛丑條約》（1901）</h3>
+      <table class="compare-table">
+        <tr><th>維度</th><th>內容</th><th>對清朝發展的影響</th></tr>
+        <tr>
+          <td class="dim">條約內容</td>
+          <td>賠款 4.5 億兩白銀（分39年還清，本息合計9.8億兩）<br>北京東交民巷設使館區 · 外國可在北京駐軍<br>拆除大沽炮台 · 懲辦義和團官員</td>
+          <td rowspan="3" style="background:#fce4ec;">
+            <strong>🔻 清朝徹底淪為「洋人的朝廷」——威信掃地</strong><br><br>
+            • <strong>政治：</strong>清廷威信掃地 → 對內無法維繫威權（地方漢人督撫在戰爭中「東南互保」不聽中央），對外完全聽命於列強<br>
+            • <strong>經濟：</strong>4.5 億兩賠款（本息 9.8 億）→ 財政徹底破產 → 將關稅、鹽稅等關鍵收入全交給列強管理<br>
+            • <strong>社會：</strong>「清末新政」被迫推行 → 廢科舉、辦新學、練新軍 → 反而培養了革命力量<br>
+            • <strong>軍事：</strong>不能在大沽口設防 → 北京門戶大開<br>
+            • <strong>決定性影響：</strong>義和團事件 + 八國聯軍讓清廷的無能徹底暴露 → 革命思潮從精英擴散到民間 → <span class="highlight">10年後清朝滅亡</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="dim">戰爭性質</td>
+          <td>八國聯軍鎮壓義和團運動——實際目的是維護各國在華利益</td>
+        </tr>
+        <tr>
+          <td class="dim">獨特之處</td>
+          <td>清廷曾向十一國宣戰 → 戰敗後賠款最重 · 主權喪失最多<br>地方與中央離心（東南互保）→ 清朝統治根基動搖</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 總結表格 -->
+    <div class="subsection">
+      <h3>📊 四次戰爭 + 條約對清朝發展的綜合影響</h3>
+      <table class="compare-table">
+        <tr>
+          <th>戰爭</th>
+          <th>賠款</th>
+          <th>領土損失</th>
+          <th>對清朝的打擊程度</th>
+          <th>對清朝歷史的影響</th>
+        </tr>
+        <tr>
+          <td class="dim">第一次鴉片戰爭</td>
+          <td>2100 萬銀元</td>
+          <td>香港島</td>
+          <td>⚡⚡</td>
+          <td>天朝夢碎 · 開戰敗先例</td>
+        </tr>
+        <tr>
+          <td class="dim">第二次鴉片戰爭</td>
+          <td>英法各 800 萬兩</td>
+          <td>九龍半島 + 東北百萬 km²</td>
+          <td>⚡⚡⚡</td>
+          <td>催生洋務運動</td>
+        </tr>
+        <tr>
+          <td class="dim">甲午戰爭</td>
+          <td>2 億兩</td>
+          <td>台灣 + 澎湖</td>
+          <td>⚡⚡⚡⚡</td>
+          <td>洋務破產 · 瓜分危機 · 催生維新</td>
+        </tr>
+        <tr>
+          <td class="dim">八國聯軍</td>
+          <td>4.5 億兩（本息9.8億）</td>
+          <td>無直接割地</td>
+          <td>⚡⚡⚡⚡⚡</td>
+          <td>清廷威信掃地 · 10年後滅亡</td>
+        </tr>
+      </table>
+      <div class="answer-demo">
+        <div class="a-label">💡 核心結論</div>
+        從第一次鴉片戰爭到八國聯軍，<strong>戰爭規模一次比一次大，條約一次比一次苛刻，清朝的主權和威信一次比一次喪失更多</strong>。<br>
+        更重要的是：<span class="highlight">每一次戰敗都刺激了改革，但改革總是不夠快、不夠徹底</span>——洋務運動只學技術→甲午戰敗；戊戌維新想學制度→被推翻；清末新政來得太遲，誠意不足→反而加速滅亡。<br><br>
+        <strong>一句話總論：</strong>「戰敗→改革→戰敗→更深改革→戰敗→革命」，這是清朝後期歷史的悲劇性循環。
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ====== 第9節：改革目標 vs 結果差距 ====== -->
+<div class="section s9 open" id="s9">
+  <div class="section-header" onclick="toggle(this.parentElement)">
+    <span>🎯 改革目標 vs 實際結果 — 差距分析</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:13px;color:#666;margin-bottom:10px;">
+      清朝後期的三場圖強運動（洋務運動、戊戌維新、清末新政），每一場都有明確的改革目標，但實際結果與目標之間存在巨大差距。理解這個「差距」是回答論點描述題和評價題的核心。
+    </p>
+
+    <!-- 洋務運動 -->
+    <div class="subsection">
+      <h3>① 洋務運動（1861-1895）</h3>
+      <table class="compare-table">
+        <tr><th style="width:18%;">對比項</th><th style="width:41%;">目標（想做甚麼）</th><th style="width:41%;">實際結果（做到了甚麼）</th></tr>
+        <tr>
+          <td class="dim">軍事</td>
+          <td>建立近代海軍和陸軍，實現「自強」</td>
+          <td style="background:#fce4ec;">北洋海軍在甲午戰爭全軍覆沒——軍費用來修建頤和園</td>
+        </tr>
+        <tr>
+          <td class="dim">工業</td>
+          <td>建立軍事工業（江南製造局、福州船政局）和民用工業（輪船招商局）</td>
+          <td style="background:#fff3e0;">部分成功——建立起了一批近代工業，但官辦企業效率低、貪腐嚴重</td>
+        </tr>
+        <tr>
+          <td class="dim">教育</td>
+          <td>學習西方技術——辦同文館、派遣留學生</td>
+          <td style="background:#fff3e0;">部分成功——培養了一批技術人才，但缺乏系統性教育改革</td>
+        </tr>
+        <tr>
+          <td class="dim">制度</td>
+          <td>無制度改革計劃——口號「中體西用」</td>
+          <td style="background:#fce4ec;"><strong>最大短板：</strong>拒絕觸碰政治制度——這是洋務運動失敗的根本原因</td></tr>
+      </table>
+
+      <h4>🎯 目標 vs 結果差距分析</h4>
+      <div class="answer-demo">
+        <div class="a-label">📊 差距評估</div>
+        <strong>目標實現度：</strong>⭐⭐（偏離）<br>
+        <strong>最大差距：</strong>軍事「自強」目標徹底失敗——甲午一戰證明北洋海軍不堪一擊。<br>
+        <strong>差距產生的原因：</strong><br>
+        ① 只學技術不學制度——「中體西用」本身就是矛盾的：在封建制度下無法建立真正的現代化軍隊<br>
+        ② 管理腐敗——官辦模式無法解決激勵問題（官員追求升官不是追求效率）<br>
+        ③ 守舊勢力阻撓——鐵路、電報、新式教育都被認為「破壞風水」「擾民」<br>
+        <strong>對清朝歷史走向的影響：</strong>洋務運動的失敗導致甲午戰敗，甲午戰敗催生了戊戌維新——從「學技術」被迫走向「學制度」。但時間已經晚了30年。
+      </div>
+    </div>
+
+    <!-- 戊戌維新 -->
+    <div class="subsection">
+      <h3>② 戊戌維新（1898年6月11日—9月21日，共103天）</h3>
+      <table class="compare-table">
+        <tr><th style="width:18%;">對比項</th><th style="width:41%;">目標（想做甚麼）</th><th style="width:41%;">實際結果（做到了甚麼）</th></tr>
+        <tr>
+          <td class="dim">政治</td>
+          <td>君主立憲、設立議院、改革官制</td>
+          <td style="background:#fce4ec;">全部失敗——慈禧政變後一切改革被廢除，維新派被殺/逃亡</td>
+        </tr>
+        <tr>
+          <td class="dim">經濟</td>
+          <td>鼓勵工商業、設立鐵路礦務總局</td>
+          <td style="background:#fce4ec;">全部推翻——政策施行僅103天，來不及產生實際效果</td>
+        </tr>
+        <tr>
+          <td class="dim">教育</td>
+          <td>廢八股、辦新式學堂（京師大學堂）</td>
+          <td style="background:#fff3e0;">唯一保留——京師大學堂（北京大學前身）在政變後得以保留</td>
+        </tr>
+        <tr>
+          <td class="dim">軍事</td>
+          <td>練新軍、改兵制</td>
+          <td style="background:#fce4ec;">部分被推翻——袁世凱的新軍訓練得以繼續，但其他改革被廢</td></tr>
+      </table>
+
+      <h4>🎯 目標 vs 結果差距分析</h4>
+      <div class="answer-demo">
+        <div class="a-label">📊 差距評估</div>
+        <strong>目標實現度：</strong>⭐（幾乎完全失敗）<br>
+        <strong>最大差距：</strong>從「全面改革」到「全部被推翻」——103天的維新運動幾乎完全被抹殺。<br>
+        <strong>差距產生的原因：</strong><br>
+        ① <strong>策略失誤：</strong>康有為、梁啟超推行改革太急、太激進——103天內頒布了數十道詔令，觸動了整個官僚集團的利益<br>
+        ② <strong>權力博弈失敗：</strong>光緒帝沒有實權，慈禧才是真正掌權者——維新派低估了守舊勢力的力量<br>
+        ③ <strong>失去軍隊支持：</strong>試圖通過袁世凱包圍頤和園 → 袁世凱出賣維新派 → 慈禧提前發動政變<br>
+        <strong>對清朝歷史走向的影響：</strong>戊戌維新的失敗證明「體制內溫和改革」的道路走不通。慈禧政變後，更多知識分子轉向革命（孫中山的革命路線）——<span class="highlight">改革的大門被關上後，革命的大門就打開了</span>。
+      </div>
+    </div>
+
+    <!-- 清末新政 -->
+    <div class="subsection">
+      <h3>③ 清末新政（1901-1911）</h3>
+      <table class="compare-table">
+        <tr><th style="width:18%;">對比項</th><th style="width:41%;">目標（想做甚麼）</th><th style="width:41%;">實際結果（做到了甚麼）</th></tr>
+        <tr>
+          <td class="dim">政治</td>
+          <td>預備立憲 → 實行君主立憲</td>
+          <td style="background:#fce4ec;"><strong>最大反效果：</strong>「皇族內閣」——13名內閣成員中9人是滿人，其中多為皇族——立憲派徹底失望</td>
+        </tr>
+        <tr>
+          <td class="dim">教育</td>
+          <td>廢科舉（1905）、辦新式學堂</td>
+          <td style="background:#fff3e0;">成功——科舉正式廢除，新式教育體系開始建立。但新學堂培養了革命思想</td>
+        </tr>
+        <tr>
+          <td class="dim">軍事</td>
+          <td>練新軍、建立現代化軍隊</td>
+          <td style="background:#fce4ec;"><strong>反面效果：</strong>新軍成為武昌起義（1911）的主力——清廷練兵，反而為革命提供了武力</td>
+        </tr>
+        <tr>
+          <td class="dim">經濟</td>
+          <td>鼓勵工商業、修鐵路</td>
+          <td style="background:#fff3e0;">部分成功——民族工商業得到發展，但鐵路國有政策引發保路運動（四川）→ 成為武昌起義的導火線</td></tr>
+      </table>
+
+      <h4>🎯 目標 vs 結果差距分析</h4>
+      <div class="answer-demo">
+        <div class="a-label">📊 差距評估</div>
+        <strong>目標實現度：</strong>⭐⭐（目標與結果完全相反——本想自救，反而加速滅亡）<br>
+        <strong>最大差距：</strong>目標是「鞏固清朝統治」，實際結果是「加速清朝滅亡」。<br>
+        <strong>差距產生的原因：</strong><br>
+        ① <strong>太遲了：</strong>距離革命爆發只有10年——如果提早20年推行，或許能挽救清朝<br>
+        ② <strong>誠意不足：</strong>「皇族內閣」證明清廷無意真放權——立憲派由失望轉為革命<br>
+        ③ <strong>改革內容互相矛盾：</strong>廢科舉斷了士人的仕進之路→士人轉向革命；練新軍培養了反清力量；鐵路國有引發民眾反抗<br>
+        <strong>對清朝歷史走向的影響：</strong>清末新政是清朝最後一次自救機會，但它的失敗證明：<span class="highlight">改革不是越晚越好——過了某個臨界點，改革只會加速革命</span>。
+      </div>
+    </div>
+
+    <!-- 三場改革總結對比 -->
+    <div class="subsection">
+      <h3>📊 三場改革對比總表：目標 vs 結果差距</h3>
+      <table class="compare-table">
+        <tr>
+          <th style="width:15%;">改革</th>
+          <th style="width:12%;">起始</th>
+          <th style="width:18%;">核心目標</th>
+          <th style="width:18%;">實際結果</th>
+          <th style="width:18%;">目標實現度</th>
+          <th style="width:19%;">對清朝走向的影響</th>
+        </tr>
+        <tr>
+          <td class="dim">洋務運動</td>
+          <td>1861</td>
+          <td>「自強求富」<br>師夷長技以制夷</td>
+          <td>甲午戰敗<br>北洋海軍覆沒</td>
+          <td style="background:#fce4ec;">⭐⭐<br>局部成功，根本失敗</td>
+          <td>證明了「只學技術」行不通 → 催生維新運動</td>
+        </tr>
+        <tr>
+          <td class="dim">戊戌維新</td>
+          <td>1898</td>
+          <td>「全變速變」<br>君主立憲</td>
+          <td>103天被推翻<br>維新派被殺</td>
+          <td style="background:#fce4ec;">⭐<br>幾乎完全失敗</td>
+          <td>體制內改革道路被封 → 知識分子轉向革命</td>
+        </tr>
+        <tr>
+          <td class="dim">清末新政</td>
+          <td>1901</td>
+          <td>「預備立憲」<br>君主立憲自救</td>
+          <td>皇族內閣失信<br>武昌起義→清亡</td>
+          <td style="background:#fce4ec;">⭐⭐<br>加速了滅亡</td>
+          <td>「太遲 + 誠意不足」的改革反而加速了革命</td>
+        </tr>
+      </table>
+
+      <div class="answer-demo">
+        <div class="a-label">💡 核心結論：改革目標與結果差距的歷史教訓</div>
+        <strong>三場改革的共同困境：</strong>每一次改革都比上一次更深入，但每一次都無法挽救清朝。<br><br>
+        <strong>三場改革的關鍵差距：</strong><br>
+        • 洋務運動：<strong>「只改技術不改制度」</strong>——差距在於改革深度不足<br>
+        • 戊戌維新：<strong>「想改制度但缺乏權力基礎」</strong>——差距在於改革策略失誤<br>
+        • 清末新政：<strong>「改革的行動與改革的誠意不匹配」</strong>——差距在於改革時機太晚 + 誠意不足<br><br>
+        <span class="highlight">一句話總結：清朝的三次改革，一次比一次深入，但始終無法突破「皇權專制」這個底線。當改革無法回應時代要求時，革命就會來代替改革。</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="footer">
+  🏯 清朝深度溫習 · 方法優先於答案<br>
+  配合使用：
+  <a href="技能框架_因果鏈分析.html">因果鏈框架</a> ·
+  <a href="技能框架_對比分析.html">對比框架</a> ·
+  <a href="技能框架_評價分析.html">評價框架</a> ·
+  <a href="技能框架_史料分析.html">史料分析框架</a>
+  <br><br>
+  <a href="index.html">← 回到首頁</a>
+</div>
+
+</div><!-- /container -->
+
+<script>
+function toggle(el) {
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>
